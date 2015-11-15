@@ -66,11 +66,9 @@
     
     [[MessageCell appearance] setBorderWidth:0.5];
     
-    
     [[MessageCollectionView appearance] setBackgroundColor:RGB(249,250,252)];
     
 }
-
 
 - (void)applicationWillResignActive:(UIApplication *)application {
     
@@ -151,9 +149,7 @@
                                                        otherButtonTitles:nil];
     [flowErrorAlertView show];
     
-    
 }
-
 
 -(void)libraryDidReceiveMessageIP:(MessageIP *)messageIP
 {
@@ -164,11 +160,5 @@
         NSLog(@"MESSAGE: \(%@)",m.body);
     }];
 }
-
-
-
-
-
-
 
 @end
