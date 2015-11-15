@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		7D337DF379922BFA70C0FA3C /* libPods-catapush-ios-sdk-example.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 67A37E4D1C341240EE5DFC61 /* libPods-catapush-ios-sdk-example.a */; };
 		9D6A818E1BF61BEA0019443F /* catapush_logo_bianco.png in Resources */ = {isa = PBXBuildFile; fileRef = 9D6A818D1BF61BEA0019443F /* catapush_logo_bianco.png */; };
-		9D6A81901BF635BE0019443F /* weblysleekuisl.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9D6A818F1BF633BD0019443F /* weblysleekuisl.ttf */; };
 		9D6D2B3B1BF71D6300EA23F1 /* MessageCollectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D6D2B3A1BF71D6300EA23F1 /* MessageCollectionView.m */; };
 		9D90A7171BF359A600DD8D4C /* MessageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D90A7161BF359A600DD8D4C /* MessageCell.m */; };
 		9DB92C3C1BF3338000B5F43F /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 9DB92C3B1BF3338000B5F43F /* main.m */; };
@@ -25,7 +24,6 @@
 		893ABBA23A6834642506A691 /* Pods-catapush-ios-sdk-example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-catapush-ios-sdk-example.debug.xcconfig"; path = "Pods/Target Support Files/Pods-catapush-ios-sdk-example/Pods-catapush-ios-sdk-example.debug.xcconfig"; sourceTree = "<group>"; };
 		9D6A818B1BF5DE310019443F /* Constants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
 		9D6A818D1BF61BEA0019443F /* catapush_logo_bianco.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = catapush_logo_bianco.png; path = resources/catapush_logo_bianco.png; sourceTree = "<group>"; };
-		9D6A818F1BF633BD0019443F /* weblysleekuisl.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = weblysleekuisl.ttf; sourceTree = "<group>"; };
 		9D6D2B391BF71D6300EA23F1 /* MessageCollectionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageCollectionView.h; sourceTree = "<group>"; };
 		9D6D2B3A1BF71D6300EA23F1 /* MessageCollectionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessageCollectionView.m; sourceTree = "<group>"; };
 		9D90A7151BF359A600DD8D4C /* MessageCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageCell.h; sourceTree = "<group>"; };
@@ -75,7 +73,6 @@
 		9D6A818C1BF61BCE0019443F /* resources */ = {
 			isa = PBXGroup;
 			children = (
-				9D6A818F1BF633BD0019443F /* weblysleekuisl.ttf */,
 				9D6A818D1BF61BEA0019443F /* catapush_logo_bianco.png */,
 			);
 			name = resources;
@@ -210,7 +207,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9D6A81901BF635BE0019443F /* weblysleekuisl.ttf in Resources */,
 				9DB92C4A1BF3338000B5F43F /* LaunchScreen.storyboard in Resources */,
 				9DB92C471BF3338000B5F43F /* Assets.xcassets in Resources */,
 				9DB92C451BF3338000B5F43F /* Main.storyboard in Resources */,
