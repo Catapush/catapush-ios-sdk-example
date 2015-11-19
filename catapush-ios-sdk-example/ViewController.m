@@ -32,6 +32,7 @@ static NSString *kCellIdentifier = @"CellConversationId";
     [self.collectionView registerClass:[MessageCell class] forCellWithReuseIdentifier:kCellIdentifier];
     
     [self perfomFetch];
+    
 }
 
 
@@ -47,6 +48,7 @@ static NSString *kCellIdentifier = @"CellConversationId";
         items = [sectionInfo numberOfObjects];
     }
     return items;
+    
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
@@ -95,6 +97,7 @@ static NSString *kCellIdentifier = @"CellConversationId";
     }
     
     return message.sendTime;
+    
 }
 
 - (CGSize)collectionView:(UICollectionView *)collectionView
@@ -119,6 +122,7 @@ static NSString *kCellIdentifier = @"CellConversationId";
     }
     
     return CGSizeMake(CGRectGetWidth(self.collectionView.bounds) - COLLECTION_INSET*2, sizeCell.height);
+    
 }
 
 - (void)perfomFetch {
@@ -126,7 +130,9 @@ static NSString *kCellIdentifier = @"CellConversationId";
     self.fetchedResultsController.delegate = self;
     
     NSError *error;
+    
     BOOL success = [self.fetchedResultsController performFetch:&error];
+    
     if(success == false) {
     
         NSLog(@"performFetch failed!");
@@ -143,6 +149,7 @@ static NSString *kCellIdentifier = @"CellConversationId";
         [self.collectionView reloadData];
         
     });
+    
 }
 
 
@@ -156,6 +163,7 @@ static NSString *kCellIdentifier = @"CellConversationId";
         [self markMessageIPAsReadIfNeeded:message];
         
     }
+    
 }
 
 - (void)markMessageIPAsReadIfNeeded:(MessageIP *)messageIP{
@@ -169,6 +177,7 @@ static NSString *kCellIdentifier = @"CellConversationId";
         NSLog(@"sending reading notification for message with id: %@", messageIP.identifier);
         
     }
+    
 }
 
 - (NSFetchedResultsController *)fetchedResultsController{
