@@ -12,6 +12,7 @@
 
 
 -(id) initWithCoder:(NSCoder *)aDecoder {
+    
     self = [super initWithCoder:aDecoder];
     
     self.bodyMesssageFont = [UIFont systemFontOfSize:14];

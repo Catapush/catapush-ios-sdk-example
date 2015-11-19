@@ -24,7 +24,8 @@
     
     self.textView.scrollEnabled = NO;
     
-    self.textView.textContainerInset = UIEdgeInsetsMake(TEXT_PADDING, TEXT_PADDING, TEXT_PADDING, TEXT_PADDING);
+    self.textView.textContainerInset = UIEdgeInsetsMake(TEXT_CONTAINER_INSET, TEXT_CONTAINER_INSET,
+                                                        TEXT_CONTAINER_INSET, TEXT_CONTAINER_INSET);
     
     self.textView.editable = NO;
     
@@ -45,6 +46,7 @@
 
 -(void) layoutSubviews {
     timeStamp.frame = CGRectZero;
+    
     if (timeStamp.text) {
         
         timeStamp.frame = CGRectMake(0, 0, self.bounds.size.width, TIMESTAMP_TEXT_HEIGHT);

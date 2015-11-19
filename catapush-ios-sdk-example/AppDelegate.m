@@ -68,7 +68,7 @@
     
     [[MessageCollectionView appearance] setBackgroundColor:RGB(249,250,252)];
     
-    [[MessageCollectionView appearance] setBodyMesssageFont:[UIFont fontWithName:@"HelveticaNeue" size:16]];
+    [[MessageCollectionView appearance] setBodyMesssageFont:[UIFont fontWithName:@"HelveticaNeue" size:18]];
     
 }
 

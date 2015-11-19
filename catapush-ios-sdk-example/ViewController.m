@@ -104,26 +104,22 @@ static NSString *kCellIdentifier = @"CellConversationId";
     
     MessageIP *message = [self.fetchedResultsController objectAtIndexPath:indexPath];
     
-    float cellWidth = CGRectGetWidth(self.collectionView.frame) - TEXT_PADDING * 2;
+    float cellWidth = CGRectGetWidth(self.collectionView.frame) - (TEXT_CONTAINER_INSET*2 + COLLECTION_INSET*2);
     
     CGRect textRect = [message.body boundingRectWithSize:CGSizeMake(cellWidth,0)
-                                                options:NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading
+                                                options:(NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading)
                                               attributes:@{NSFontAttributeName: self.collectionView.bodyMesssageFont }
-      
                                                  context:nil];
     
-    CGSize sizeCell = CGSizeMake(cellWidth, ceil(textRect.size.height + TEXT_PADDING * 2));
+    CGSize sizeCell = CGSizeMake(CGRectGetWidth(self.collectionView.bounds),
+                                 ceil(1+textRect.size.height + TEXT_CONTAINER_INSET*2));
     
     if ([self previousDate:message withIndexPath:indexPath]) {
         
-        sizeCell = CGSizeMake(cellWidth, sizeCell.height + TIMESTAMP_TEXT_HEIGHT);
+        sizeCell = CGSizeMake(sizeCell.width, sizeCell.height + TIMESTAMP_TEXT_HEIGHT);
     }
     
-    return sizeCell;
-}
-
-- (UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout insetForSectionAtIndex:(NSInteger)section{
-    return UIEdgeInsetsMake(TEXT_PADDING, 0, TEXT_PADDING, 0);
+    return CGSizeMake(CGRectGetWidth(self.collectionView.bounds) - COLLECTION_INSET*2, sizeCell.height);
 }
 
 - (void)perfomFetch {
