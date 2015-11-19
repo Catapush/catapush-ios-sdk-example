@@ -55,7 +55,6 @@
                                      CGRectGetWidth(self.bounds),
                                      CGRectGetHeight(self.bounds) - CGRectGetHeight(timeStamp.frame));
     
-    NSLog(@"cell.frame: %@",NSStringFromCGRect(self.frame));
 }
 
 -(void) prepareForReuse {
