@@ -9,7 +9,7 @@ This project shows how quickly Catapush iOS SDK can be integrated into your curr
 ```ruby
 git clone https://github.com/Catapush/catapush-ios-sdk-example.git
 cd catapush-ios-sdk-example
-pod setup
+pod install
 open catapush-ios-sdk-example.xcworkspace
 ```
 
