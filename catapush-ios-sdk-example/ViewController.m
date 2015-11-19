@@ -59,10 +59,43 @@ static NSString *kCellIdentifier = @"CellConversationId";
     
     cell.text  = message.body;
     
-    cell.textLabel.font = self.collectionView.bodyMesssageFont;
+    cell.textView.font = self.collectionView.bodyMesssageFont;
+    
+    NSDate *previousDate = [self previousDate:message withIndexPath:indexPath];
+  
+    if(previousDate) {
+        
+        [cell setTimestamp:previousDate];
+    }
     
     return cell;
     
+}
+
+
+-(NSDate *) previousDate:(MessageIP *) message withIndexPath:(NSIndexPath *) indexPath {
+    
+    if (indexPath.row > 0) {
+        
+        NSIndexPath *prevIndex = [NSIndexPath indexPathForRow:(indexPath.row - 1) inSection:indexPath.section];
+        
+        MessageIP *prevMsg = [self.fetchedResultsController objectAtIndexPath:prevIndex];
+        
+        NSTimeInterval timeGap = [message.sendTime timeIntervalSinceDate:prevMsg.sendTime];
+        
+        if(timeGap/60 > 5) {
+            
+            return message.sendTime;
+            
+        } else {
+            
+            return nil;
+            
+        }
+        
+    }
+    
+    return message.sendTime;
 }
 
 - (CGSize)collectionView:(UICollectionView *)collectionView
@@ -70,13 +103,23 @@ static NSString *kCellIdentifier = @"CellConversationId";
   sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
     
     MessageIP *message = [self.fetchedResultsController objectAtIndexPath:indexPath];
-    CGRect textRect = [message.body boundingRectWithSize:CGSizeMake(self.collectionView.frame.size.width-TEXT_PADDING*2,0)
-                                                options:NSStringDrawingUsesLineFragmentOrigin
+    
+    float cellWidth = CGRectGetWidth(self.collectionView.frame) - TEXT_PADDING * 2;
+    
+    CGRect textRect = [message.body boundingRectWithSize:CGSizeMake(cellWidth,0)
+                                                options:NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading
                                               attributes:@{NSFontAttributeName: self.collectionView.bodyMesssageFont }
+      
                                                  context:nil];
     
-    return CGSizeMake(self.collectionView.frame.size.width - TEXT_PADDING * 2,
-                      ceil(textRect.size.height + TEXT_PADDING * 2));
+    CGSize sizeCell = CGSizeMake(cellWidth, ceil(textRect.size.height + TEXT_PADDING * 2));
+    
+    if ([self previousDate:message withIndexPath:indexPath]) {
+        
+        sizeCell = CGSizeMake(cellWidth, sizeCell.height + TIMESTAMP_TEXT_HEIGHT);
+    }
+    
+    return sizeCell;
 }
 
 - (UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout insetForSectionAtIndex:(NSInteger)section{
@@ -142,7 +185,6 @@ static NSString *kCellIdentifier = @"CellConversationId";
     
     return _fetchedResultsController;
 }
-
 
 
 - (NSManagedObjectContext *)managedObjectContext{

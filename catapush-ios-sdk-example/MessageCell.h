@@ -20,8 +20,9 @@
 
 @property (nonatomic, assign) CGFloat borderWidth UI_APPEARANCE_SELECTOR;
 
-@property (nonatomic,strong) UILabel *textLabel;
+@property (nonatomic,strong) UITextView *textView;
 
 -(void)setText:(NSString *)text;
 
+-(void) setTimestamp:(NSDate*) date;
 @end

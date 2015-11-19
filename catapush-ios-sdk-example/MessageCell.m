@@ -11,28 +11,51 @@
 
 
 @implementation MessageCell {
-    
+    UILabel *timeStamp;
 }
 
 -(id)initWithFrame:(CGRect)frame {
     
     if (!(self = [super initWithFrame:frame])) return nil;
 
-    self.textLabel = [UILabel new];
+    self.textView = [UITextView new];
     
-    self.textLabel.numberOfLines = 0;
+    self.textView.layer.masksToBounds = YES;
     
-    self.layer.masksToBounds = YES;
+    self.textView.scrollEnabled = NO;
     
-    [self.contentView addSubview:self.textLabel];
+    self.textView.textContainerInset = UIEdgeInsetsMake(TEXT_PADDING, TEXT_PADDING, TEXT_PADDING, TEXT_PADDING);
+    
+    self.textView.editable = NO;
+    
+    [self.contentView addSubview:self.textView];
+    
+    timeStamp = [UILabel new];
+    
+    timeStamp.textAlignment = NSTextAlignmentCenter;
+    
+    timeStamp.font = [UIFont systemFontOfSize:10];
+    
+    timeStamp.textColor = [UIColor grayColor];
+    
+    [self.contentView addSubview:timeStamp];
     
     return self;
 }
 
 -(void) layoutSubviews {
-
-    self.textLabel.frame = CGRectInset(self.bounds,TEXT_PADDING,TEXT_PADDING);
+    timeStamp.frame = CGRectZero;
+    if (timeStamp.text) {
+        
+        timeStamp.frame = CGRectMake(0, 0, self.bounds.size.width, TIMESTAMP_TEXT_HEIGHT);
+    }
     
+    self.textView.frame = CGRectMake(0,
+                                     CGRectGetHeight(timeStamp.frame),
+                                     CGRectGetWidth(self.bounds),
+                                     CGRectGetHeight(self.bounds) - CGRectGetHeight(timeStamp.frame));
+    
+    NSLog(@"cell.frame: %@",NSStringFromCGRect(self.frame));
 }
 
 -(void) prepareForReuse {
@@ -41,45 +64,55 @@
     
     self.text = @"";
     
+    timeStamp.text = nil;
+    
 }
 
 -(void) setText:(NSString *)text {
     
-    self.textLabel.text = [text copy];
+    self.textView.text = [text copy];
     
 }
 
+-(void) setTimestamp:(NSDate*) date {
+
+    NSDateFormatter *dateFormatter  = [NSDateFormatter new];
+    
+    [dateFormatter setDateFormat: @"MM-dd HH:mm"];
+    
+    timeStamp.text = [dateFormatter stringFromDate:date];
+
+}
 
 #pragma UI Appareance
 
 -(void) setCornerRadius:(CGFloat)cornerRadius {
     
-    self.layer.cornerRadius = cornerRadius;
+    self.textView.layer.cornerRadius = cornerRadius;
     
 }
 
 -(void) setTextBackgroundColor:(UIColor *)backgroundColor {
     
-    self.backgroundColor = backgroundColor;
+    self.textView.backgroundColor = backgroundColor;
     
 }
 
 -(void) setBorderWidth:(CGFloat)borderWidth {
     
-    self.layer.borderWidth = borderWidth;
+    self.textView.layer.borderWidth = borderWidth;
     
 }
 
 -(void) setTextColor:(UIColor *)textColor {
     
-   self.textLabel.textColor = textColor;
+   self.textView.textColor = textColor;
 }
 
 -(void) setBorderColor:(UIColor *)borderColor {
     
-    self.layer.borderColor = borderColor.CGColor;
+    self.textView.layer.borderColor = borderColor.CGColor;
     
 }
-
 
 @end
