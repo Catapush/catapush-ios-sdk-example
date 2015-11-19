@@ -11,7 +11,6 @@
 
 
 @implementation MessageCell {
-    UILabel *textLabel;
     
 }
 
@@ -19,21 +18,20 @@
     
     if (!(self = [super initWithFrame:frame])) return nil;
 
-    textLabel = [UILabel new];
+    self.textLabel = [UILabel new];
     
-    textLabel.numberOfLines = 0;
-    
-    textLabel.font = FONT;
+    self.textLabel.numberOfLines = 0;
     
     self.layer.masksToBounds = YES;
     
-    [self.contentView addSubview:textLabel];
+    [self.contentView addSubview:self.textLabel];
+    
     return self;
 }
 
 -(void) layoutSubviews {
 
-    textLabel.frame = CGRectInset(self.bounds,TEXT_PADDING,TEXT_PADDING);
+    self.textLabel.frame = CGRectInset(self.bounds,TEXT_PADDING,TEXT_PADDING);
     
 }
 
@@ -47,9 +45,8 @@
 
 -(void) setText:(NSString *)text {
     
-    _text = [text copy];
+    self.textLabel.text = [text copy];
     
-    textLabel.text = self.text;
 }
 
 
@@ -75,7 +72,7 @@
 
 -(void) setTextColor:(UIColor *)textColor {
     
-   textLabel.textColor = textColor;
+   self.textLabel.textColor = textColor;
 }
 
 -(void) setBorderColor:(UIColor *)borderColor {

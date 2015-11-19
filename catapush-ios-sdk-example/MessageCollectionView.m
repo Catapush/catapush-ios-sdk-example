@@ -10,4 +10,13 @@
 
 @implementation MessageCollectionView
 
+
+-(id) initWithCoder:(NSCoder *)aDecoder {
+    self = [super initWithCoder:aDecoder];
+    
+    self.bodyMesssageFont = [UIFont systemFontOfSize:14];
+    
+    return self;
+}
+
 @end

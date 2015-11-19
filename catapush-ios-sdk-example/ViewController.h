@@ -7,11 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "MessageCollectionView.h"
 
 @interface ViewController : UIViewController
 
-@property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
-
+@property (weak, nonatomic) IBOutlet MessageCollectionView *collectionView;
 
 @end
 

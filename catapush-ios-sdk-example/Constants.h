@@ -9,9 +9,6 @@
 #ifndef Constants_h
 #define Constants_h
 
-#define FONT_SIZE 20
-#define FONT_NAME @"HelveticaNeue"
-#define FONT [UIFont fontWithName:FONT_NAME size:FONT_SIZE]
 #define TEXT_PADDING 10
 
 

@@ -20,7 +20,7 @@
 
 @property (nonatomic, assign) CGFloat borderWidth UI_APPEARANCE_SELECTOR;
 
-@property (nonatomic,copy) NSString *text;
+@property (nonatomic,strong) UILabel *textLabel;
 
 -(void)setText:(NSString *)text;
 

@@ -59,7 +59,9 @@ static NSString *kCellIdentifier = @"CellConversationId";
     MessageIP *message = [self.fetchedResultsController objectAtIndexPath:indexPath];
     
     cell.text  = message.body;
-
+    
+    cell.textLabel.font = self.collectionView.bodyMesssageFont;
+    
     return cell;
     
 }
@@ -71,7 +73,7 @@ static NSString *kCellIdentifier = @"CellConversationId";
     MessageIP *message = [self.fetchedResultsController objectAtIndexPath:indexPath];
     CGRect textRect = [message.body boundingRectWithSize:CGSizeMake(self.collectionView.frame.size.width-TEXT_PADDING*2,0)
                                                 options:NSStringDrawingUsesLineFragmentOrigin
-                                              attributes:@{NSFontAttributeName: FONT }
+                                              attributes:@{NSFontAttributeName: self.collectionView.bodyMesssageFont }
                                                  context:nil];
     
     return CGSizeMake(self.collectionView.frame.size.width - TEXT_PADDING * 2,
