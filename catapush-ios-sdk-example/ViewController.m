@@ -38,7 +38,6 @@ static NSString *kCellIdentifier = @"CellConversationId";
 #pragma mark UICollectionView Delegates
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
     
-    
     NSInteger items = 0;
     
     if ([[self.fetchedResultsController sections] count] > 0) {
@@ -129,13 +128,20 @@ static NSString *kCellIdentifier = @"CellConversationId";
     NSError *error;
     BOOL success = [self.fetchedResultsController performFetch:&error];
     if(success == false) {
+    
         NSLog(@"performFetch failed!");
+        
     }
+    
     dispatch_async(dispatch_get_main_queue(), ^{
+    
         for (MessageIP *message in self.fetchedResultsController.fetchedObjects) {
+        
             [self markMessageIPAsReadIfNeeded:message];
+            
         }
         [self.collectionView reloadData];
+        
     });
 }
 
@@ -146,7 +152,9 @@ static NSString *kCellIdentifier = @"CellConversationId";
     [self.collectionView reloadData];
     
     for (MessageIP *message in self.fetchedResultsController.fetchedObjects) {
+    
         [self markMessageIPAsReadIfNeeded:message];
+        
     }
 }
 
@@ -180,6 +188,7 @@ static NSString *kCellIdentifier = @"CellConversationId";
     }
     
     return _fetchedResultsController;
+    
 }
 
 
@@ -192,6 +201,7 @@ static NSString *kCellIdentifier = @"CellConversationId";
     }
     
     return _managedObjectContext;
+    
 }
 
 - (void)didReceiveMemoryWarning {
