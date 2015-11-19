@@ -15,10 +15,9 @@ static NSString *kCellIdentifier = @"CellConversationId";
 
 @interface ViewController () <UICollectionViewDelegate,UICollectionViewDataSource,NSFetchedResultsControllerDelegate>
 
-@property (nonatomic, strong) NSFetchedResultsController *fetchedResultsController; //handles all Messages
+@property (nonatomic, strong) NSFetchedResultsController *fetchedResultsController;
+
 @property (nonatomic, strong) NSManagedObjectContext *managedObjectContext;
-
-
 
 @end
 
