@@ -29,7 +29,7 @@
     
     self.textView.editable = NO;
     
-    [self.contentView addSubview:self.textView];
+    
     
     timeStamp = [UILabel new];
     
@@ -40,6 +40,8 @@
     timeStamp.textColor = [UIColor grayColor];
     
     [self.contentView addSubview:timeStamp];
+    [self.contentView addSubview:self.textView];
+    
     
     return self;
 }
@@ -56,6 +58,8 @@
                                      CGRectGetHeight(timeStamp.frame),
                                      CGRectGetWidth(self.bounds),
                                      CGRectGetHeight(self.bounds) - CGRectGetHeight(timeStamp.frame));
+    [self.textView becomeFirstResponder];
+    
     
 }
 
