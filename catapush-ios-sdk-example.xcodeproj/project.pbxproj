@@ -71,13 +71,6 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		9D6A818C1BF61BCE0019443F /* resources */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = resources;
-			sourceTree = "<group>";
-		};
 		9D90A7191BF392BD00DD8D4C /* view */ = {
 			isa = PBXGroup;
 			children = (
@@ -122,7 +115,6 @@
 			isa = PBXGroup;
 			children = (
 				9D6A818B1BF5DE310019443F /* Constants.h */,
-				9D6A818C1BF61BCE0019443F /* resources */,
 				9D90A71A1BF392CA00DD8D4C /* controller */,
 				9D90A7191BF392BD00DD8D4C /* view */,
 				9DB92C3D1BF3338000B5F43F /* AppDelegate.h */,
