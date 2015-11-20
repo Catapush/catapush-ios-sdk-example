@@ -64,13 +64,12 @@ The following code shows how to change the appearance of the message bubbles and
     NSShadow *shadow = [NSShadow new];
     shadow.shadowColor = [UIColor colorWithWhite:0 alpha:0.8];
     shadow.shadowOffset = CGSizeMake(0, 1);
-    
-
-    NSDictionary *attrbutes = @{NSForegroundColorAttributeName:[UIColor colorWithRed:245.0/255.0
+  	NSDictionary *attrbutes = @{NSForegroundColorAttributeName:[UIColor colorWithRed:245.0/255.0
                                                                                green:245.0/255.0
                                                                                 blue:255.0/255.0
                                                                                alpha:1],
                                 NSShadowAttributeName:shadow,
+                                NSFontAttributeName:[UIFont fontWithName:@"HelveticaNeue-CondensedBlack" size:21.0]
                                 };
     [[MessageNavigationBar appearance] setTitleTextAttributes: attrbutes];
     [[MessageNavigationBar appearance] setBarTintColor:[UIColor redColor]];
