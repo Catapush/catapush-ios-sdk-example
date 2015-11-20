@@ -53,39 +53,33 @@ The following code shows how to change the appearance of the message bubbles and
 ```ruby
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
 
-...
+     // ...
 
-   // Bubble Message 
-  [[MessageCell appearance] setBubbleViewCornerRadius:10];
-  [[MessageCell appearance] setBubbleViewBorderColor:[UIColor colorWithWhite:0 alpha:0.2]];
-  [[MessageCell appearance] setBubbleViewColor:[UIColor lightGrayColor]];
-  [[MessageCell appearance] setBubbleViewBorderWidth:0.5];
-  [[MessageCell appearance] setMessageTextColor:[UIColor whiteColor]];
-  [[MessageCollectionView appearance] setBackgroundColor:[UIColor colorWithRed:249.0/255.0
-                                                                           green:250.0/255.0
-                                                                            blue:252.0/255.0
-                                                                           alpha:0]];
+    // Customize Bubble
+    [[MessageCell appearance] setMessageTextColor:[UIColor whiteColor]];
+    [[MessageCell appearance] setBubbleViewCornerRadius:2];
+    [[MessageCell appearance] setBubbleViewColor:[UIColor lightGrayColor]];
     
-  [[MessageCollectionView appearance] setMessageTextFont:[UIFont fontWithName:@"HelveticaNeue" size:18]];
+    // Customize Navigation Bar - Add Shadow to Navigation Bar Title
+    NSShadow *shadow = [NSShadow new];
+    shadow.shadowColor = [UIColor colorWithWhite:0 alpha:0.8];
+    shadow.shadowOffset = CGSizeMake(0, 1);
+    
 
-  // Navigationbar
-  [[MessageNavigationBar appearance] setBarTintColor:[UIColor redColor]];
+    NSDictionary *attrbutes = @{NSForegroundColorAttributeName:[UIColor colorWithRed:245.0/255.0
+                                                                               green:245.0/255.0
+                                                                                blue:255.0/255.0
+                                                                               alpha:1],
+                                NSShadowAttributeName:shadow,
+                                };
+    [[MessageNavigationBar appearance] setTitleTextAttributes: attrbutes];
+    [[MessageNavigationBar appearance] setBarTintColor:[UIColor redColor]];
     
-  NSShadow *shadow = [NSShadow new];
-  shadow.shadowColor = [UIColor colorWithWhite:0 alpha:0.8];
-  shadow.shadowOffset = CGSizeMake(0, 1);
-  NSDictionary *attrbutes = @{NSForegroundColorAttributeName:[UIColor colorWithRed:245.0/255.0
-                                                                             green:245.0/255.0
-                                                                              blue:255.0/255.0
-                                                                             alpha:0],
-                              NSShadowAttributeName:shadow,
-                              NSFontAttributeName:[UIFont fontWithName:@"HelveticaNeue-CondensedBlack" size:21.0]
-                              };
-  [[MessageNavigationBar appearance] setTitleTextAttributes: attrbutes];
+ 
 
 }
 ```
-![alt tag](https://github.com/Catapush/catapush-ios-sdk-example/blob/master/catapush_screen_shot_custom.jpg)
+![alt tag](https://github.com/Catapush/catapush-ios-sdk-example/blob/master/catapush_screen_shot_custom_red.jpg)
 
 
 
