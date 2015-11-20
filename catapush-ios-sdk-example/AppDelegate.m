@@ -11,6 +11,7 @@
 #import "MessageCell.h"
 #import "MessageCollectionView.h"
 #import "Constants.h"
+#import "MessageNavigationBar.h"
 
 @interface AppDelegate () <CatapushDelegate,MessagesDispatchDelegate>
 
@@ -21,7 +22,7 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
    
-    [Catapush setAppKey:@"YOUR_APP_KEY"];
+    [Catapush setAppKey:@"1936ff755bc74f186c9ed888d573fcc9"];
     
     [Catapush startWithIdentifier: @"test" andPassword:@"test"];
     
@@ -55,21 +56,38 @@
 }
 
 - (void)setupUI {
+      /*
+    [[MessageCell appearance] setBubbleViewCornerRadius:10];
+    [[MessageCell appearance] setBubbleViewBorderColor:[UIColor colorWithWhite:0 alpha:0.2]];
+    [[MessageCell appearance] setBubbleViewColor:[UIColor lightGrayColor]];
+    [[MessageCell appearance] setBubbleViewBorderWidth:0.5];
+    [[MessageCollectionView appearance] setBackgroundColor:[UIColor colorWithRed:249.0/255.0
+                                                                           green:250.0/255.0
+                                                                            blue:252.0/255.0
+                                                                           alpha:1]];
     
-    [[MessageCell appearance] setCornerRadius:10];
+    [[MessageCell appearance] setMessageTextColor:[UIColor whiteColor]];
+
+    [[MessageCollectionView appearance] setMessageTextFont:[UIFont fontWithName:@"HelveticaNeue" size:18]];
     
-    [[MessageCell appearance] setTextBackgroundColor:[UIColor whiteColor]];
+    [[MessageNavigationBar appearance] setBarTintColor:[UIColor redColor]];
+    [[MessageCell appearance] setMessageTextColor:[UIColor whiteColor]];
+    [[MessageCell appearance] setBubbleViewCornerRadius:2];
+    [[MessageCell appearance] setBubbleViewColor:[UIColor lightGrayColor]];
     
-    [[MessageCell appearance] setTextColor:RGB(68,68,68)];
+    NSShadow *shadow = [NSShadow new];
+    shadow.shadowColor = [UIColor colorWithWhite:0 alpha:0.8];
+    shadow.shadowOffset = CGSizeMake(0, 1);
     
-    [[MessageCell appearance] setBorderColor:[UIColor colorWithWhite:0 alpha:0.2]];
-    
-    [[MessageCell appearance] setBorderWidth:0.5];
-    
-    [[MessageCollectionView appearance] setBackgroundColor:RGB(249,250,252)];
-    
-    [[MessageCollectionView appearance] setBodyMesssageFont:[UIFont fontWithName:@"HelveticaNeue" size:18]];
-    
+    NSDictionary *attrbutes = @{NSForegroundColorAttributeName:[UIColor colorWithRed:245.0/255.0
+                                                                               green:245.0/255.0
+                                                                                blue:255.0/255.0
+                                                                               alpha:1],
+                                NSShadowAttributeName:shadow,
+                                NSFontAttributeName:[UIFont fontWithName:@"HelveticaNeue-CondensedBlack" size:21.0]
+                                };
+    [[MessageNavigationBar appearance] setTitleTextAttributes: attrbutes];
+     */
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application {
