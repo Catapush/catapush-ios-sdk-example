@@ -63,11 +63,31 @@ Let's change the appearance of the  ```UINavigationBar``` with the following cod
 
 ...
 
-[[MessageNavigationBar appearance] setTitleTextAttributes: @{
-                                            NSForegroundColorAttributeName:RGBA(245,245,255,1.0),
-                                            NSShadowAttributeName:shadow,
-                                            NSFontAttributeName:[UIFont fontWithName:@"HelveticaNeue-CondensedBlack" size:21.0]
-                                            }];
+  [[MessageCell appearance] setBubbleViewCornerRadius:10];
+  [[MessageCell appearance] setBubbleViewBorderColor:[UIColor colorWithWhite:0 alpha:0.2]];
+  [[MessageCell appearance] setBubbleViewColor:[UIColor lightGrayColor]];
+  [[MessageCell appearance] setBubbleViewBorderWidth:0.5];
+  [[MessageCell appearance] setMessageTextColor:[UIColor whiteColor]];
+  [[MessageCollectionView appearance] setBackgroundColor:[UIColor colorWithRed:249.0/255.0
+                                                                           green:250.0/255.0
+                                                                            blue:252.0/255.0
+                                                                           alpha:0]];
+    
+  [[MessageCollectionView appearance] setMessageTextFont:[UIFont fontWithName:@"HelveticaNeue" size:18]];
+  [[MessageNavigationBar appearance] setBarTintColor:[UIColor redColor]];
+    
+  NSShadow *shadow = [NSShadow new];
+  shadow.shadowColor = [UIColor colorWithWhite:0 alpha:0.8];
+  shadow.shadowOffset = CGSizeMake(0, 1);
+  NSDictionary *attrbutes = @{NSForegroundColorAttributeName:[UIColor colorWithRed:245.0/255.0
+                                                                             green:245.0/255.0
+                                                                              blue:255.0/255.0
+                                                                             alpha:0],
+                              NSShadowAttributeName:shadow,
+                              NSFontAttributeName:[UIFont fontWithName:@"HelveticaNeue-CondensedBlack" size:21.0]
+                              };
+  [[MessageNavigationBar appearance] setTitleTextAttributes: attrbutes];
+
 }
 ```
 ![alt tag](https://github.com/Catapush/catapush-ios-sdk-example/blob/master/catapush_screen_shot_custom.jpg)
