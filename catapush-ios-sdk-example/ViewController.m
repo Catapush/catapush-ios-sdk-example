@@ -14,7 +14,6 @@
 static NSString *kCellIdentifier = @"CellConversationId";
 static float CollectionInset = 5;
 
-
 @interface ViewController () <UICollectionViewDelegate,UICollectionViewDataSource,NSFetchedResultsControllerDelegate>
 @property (nonatomic, strong) NSFetchedResultsController *fetchedResultsController;
 @property (nonatomic, strong) NSManagedObjectContext *managedObjectContext;
@@ -68,13 +67,12 @@ static float CollectionInset = 5;
   return message.sendTime;
 }
 
-- (CGSize)collectionView:(UICollectionView *)collectionView
-                  layout:(UICollectionViewLayout*)collectionViewLayout
-  sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
+- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
     MessageIP *message = [self.fetchedResultsController objectAtIndexPath:indexPath];
     UITextView *textView = [UITextView new];
     textView.font = self.collectionView.messageTextFont;
     textView.text = message.body;
+    textView.textContainerInset = UIEdgeInsetsMake(TxtInset,TxtInset,TxtInset,TxtInset);
     float cellWidth = CGRectGetWidth(self.collectionView.frame) - CollectionInset*2;
     CGSize size = [textView sizeThatFits:CGSizeMake(cellWidth, CGFLOAT_MAX)];
     float cellHeight = ([self previousDate:message withIndexPath:indexPath] ? size.height+TimestampHeight:size.height);

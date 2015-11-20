@@ -27,6 +27,7 @@
     self.textView.layer.borderColor = [UIColor colorWithWhite:0 alpha:0.2].CGColor;
     self.textView.backgroundColor = [UIColor whiteColor];
     self.textView.textColor = RGB(68, 68, 68);
+    self.textView.textContainerInset = UIEdgeInsetsMake(TxtInset, TxtInset, TxtInset, TxtInset);
     
     timeStamp = [UILabel new];
     timeStamp.textAlignment = NSTextAlignmentCenter;
