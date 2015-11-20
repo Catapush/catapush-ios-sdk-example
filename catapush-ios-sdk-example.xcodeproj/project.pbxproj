@@ -8,8 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		7D337DF379922BFA70C0FA3C /* libPods-catapush-ios-sdk-example.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 67A37E4D1C341240EE5DFC61 /* libPods-catapush-ios-sdk-example.a */; };
-		9D6A818E1BF61BEA0019443F /* catapush_logo_bianco.png in Resources */ = {isa = PBXBuildFile; fileRef = 9D6A818D1BF61BEA0019443F /* catapush_logo_bianco.png */; };
 		9D6D2B3B1BF71D6300EA23F1 /* MessageCollectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D6D2B3A1BF71D6300EA23F1 /* MessageCollectionView.m */; };
+		9D78339B1BFF557D001BA771 /* MessageNavigationBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D78339A1BFF557D001BA771 /* MessageNavigationBar.m */; };
 		9D90A7171BF359A600DD8D4C /* MessageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D90A7161BF359A600DD8D4C /* MessageCell.m */; };
 		9DB92C3C1BF3338000B5F43F /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 9DB92C3B1BF3338000B5F43F /* main.m */; };
 		9DB92C3F1BF3338000B5F43F /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 9DB92C3E1BF3338000B5F43F /* AppDelegate.m */; };
@@ -23,9 +23,10 @@
 		67A37E4D1C341240EE5DFC61 /* libPods-catapush-ios-sdk-example.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-catapush-ios-sdk-example.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		893ABBA23A6834642506A691 /* Pods-catapush-ios-sdk-example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-catapush-ios-sdk-example.debug.xcconfig"; path = "Pods/Target Support Files/Pods-catapush-ios-sdk-example/Pods-catapush-ios-sdk-example.debug.xcconfig"; sourceTree = "<group>"; };
 		9D6A818B1BF5DE310019443F /* Constants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
-		9D6A818D1BF61BEA0019443F /* catapush_logo_bianco.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = catapush_logo_bianco.png; path = resources/catapush_logo_bianco.png; sourceTree = "<group>"; };
 		9D6D2B391BF71D6300EA23F1 /* MessageCollectionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageCollectionView.h; sourceTree = "<group>"; };
 		9D6D2B3A1BF71D6300EA23F1 /* MessageCollectionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessageCollectionView.m; sourceTree = "<group>"; };
+		9D7833991BFF557D001BA771 /* MessageNavigationBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageNavigationBar.h; sourceTree = "<group>"; };
+		9D78339A1BFF557D001BA771 /* MessageNavigationBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessageNavigationBar.m; sourceTree = "<group>"; };
 		9D90A7151BF359A600DD8D4C /* MessageCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageCell.h; sourceTree = "<group>"; };
 		9D90A7161BF359A600DD8D4C /* MessageCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessageCell.m; sourceTree = "<group>"; };
 		9DB92C371BF3338000B5F43F /* catapush-ios-sdk-example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "catapush-ios-sdk-example.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -73,7 +74,6 @@
 		9D6A818C1BF61BCE0019443F /* resources */ = {
 			isa = PBXGroup;
 			children = (
-				9D6A818D1BF61BEA0019443F /* catapush_logo_bianco.png */,
 			);
 			name = resources;
 			sourceTree = "<group>";
@@ -85,6 +85,8 @@
 				9D90A7161BF359A600DD8D4C /* MessageCell.m */,
 				9D6D2B391BF71D6300EA23F1 /* MessageCollectionView.h */,
 				9D6D2B3A1BF71D6300EA23F1 /* MessageCollectionView.m */,
+				9D7833991BFF557D001BA771 /* MessageNavigationBar.h */,
+				9D78339A1BFF557D001BA771 /* MessageNavigationBar.m */,
 			);
 			name = view;
 			sourceTree = "<group>";
@@ -94,7 +96,6 @@
 			children = (
 				9DB92C401BF3338000B5F43F /* ViewController.h */,
 				9DB92C411BF3338000B5F43F /* ViewController.m */,
-				9D6A818B1BF5DE310019443F /* Constants.h */,
 			);
 			name = controller;
 			sourceTree = "<group>";
@@ -120,6 +121,7 @@
 		9DB92C391BF3338000B5F43F /* catapush-ios-sdk-example */ = {
 			isa = PBXGroup;
 			children = (
+				9D6A818B1BF5DE310019443F /* Constants.h */,
 				9D6A818C1BF61BCE0019443F /* resources */,
 				9D90A71A1BF392CA00DD8D4C /* controller */,
 				9D90A7191BF392BD00DD8D4C /* view */,
@@ -210,7 +212,6 @@
 				9DB92C4A1BF3338000B5F43F /* LaunchScreen.storyboard in Resources */,
 				9DB92C471BF3338000B5F43F /* Assets.xcassets in Resources */,
 				9DB92C451BF3338000B5F43F /* Main.storyboard in Resources */,
-				9D6A818E1BF61BEA0019443F /* catapush_logo_bianco.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -270,6 +271,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				9DB92C421BF3338000B5F43F /* ViewController.m in Sources */,
+				9D78339B1BFF557D001BA771 /* MessageNavigationBar.m in Sources */,
 				9D90A7171BF359A600DD8D4C /* MessageCell.m in Sources */,
 				9DB92C3F1BF3338000B5F43F /* AppDelegate.m in Sources */,
 				9DB92C3C1BF3338000B5F43F /* main.m in Sources */,
