@@ -21,37 +21,26 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-   
     [Catapush setAppKey:@"YOUR_APP_KEY"];
-    
     [Catapush startWithIdentifier: @"test" andPassword:@"test"];
-    
     [Catapush setupCatapushStateDelegate:self andMessagesDispatcherDelegate:self];
-    
     NSDictionary *remoteNotification = [launchOptions objectForKey: UIApplicationLaunchOptionsRemoteNotificationKey];
     
-    if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 8.0)
-    {
-        
+    if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 8.0) {
         [application registerUserNotificationSettings:[UIUserNotificationSettings settingsForTypes:(UIUserNotificationTypeSound | UIUserNotificationTypeAlert | UIUserNotificationTypeBadge) categories:nil]];
-        
         [application registerForRemoteNotifications];
         
     } else
     {
-        
         [application registerForRemoteNotificationTypes:(UIRemoteNotificationTypeBadge | UIRemoteNotificationTypeSound | UIRemoteNotificationTypeAlert)];
-        
     }
     
     application.applicationIconBadgeNumber = 0;
-    
     if ([remoteNotification[@"sender"] isEqualToString:@"catapush"]) {
         // Wake up, it's Catapush!
     }
 
     [self setupUI];
-    
     return YES;
 }
 
@@ -95,15 +84,11 @@
 }
 
 - (void)applicationDidEnterBackground:(UIApplication *)application {
-    
     [Catapush applicationDidEnterBackground:application];
-    
 }
 
 - (void)applicationWillEnterForeground:(UIApplication *)application {
-    
     [Catapush applicationWillEnterForeground:application];
-    
 }
 
 - (void)applicationDidBecomeActive:(UIApplication *)application {
@@ -115,13 +100,10 @@
 }
 
 - (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
-
     [Catapush registerForRemoteNotificationsWithDeviceToken:deviceToken];
-
 }
 
-- (void)application:(UIApplication *)application didFailToRegisterForRemoteNotificationsWithError:(NSError *)error
-{
+- (void)application:(UIApplication *)application didFailToRegisterForRemoteNotificationsWithError:(NSError *)error {
     NSLog(@"Did Fail Register Notification: %@", error);
 }
 
@@ -140,11 +122,8 @@
     [connectedAV show];
 }
 
-- (void)catapush:(Catapush *)catapush didFailOperation:(NSString *)operationName withError:(NSError *)error
-{
-    
+- (void)catapush:(Catapush *)catapush didFailOperation:(NSString *)operationName withError:(NSError *)error {
     if ([error.domain isEqualToString:CATAPUSH_ERROR_DOMAIN]) {
-        
         switch (error.code) {
             case WRONG_AUTHENTICATION:
                 break;
@@ -157,7 +136,6 @@
             default:
                 break;
         }
-        
     }
     
     NSString *errorMsg = [NSString stringWithFormat:@"The operation %@ is failed with error:\n%@", operationName, [error localizedDescription]];
@@ -168,16 +146,12 @@
                                                        cancelButtonTitle:@"Ok"
                                                        otherButtonTitles:nil];
     [flowErrorAlertView show];
-    
 }
 
--(void)libraryDidReceiveMessageIP:(MessageIP *)messageIP
-{
-    NSLog(@"Did receive IP Message with identifier: %@ and body: %@", messageIP.identifier, messageIP.body);
-    
+-(void)libraryDidReceiveMessageIP:(MessageIP *)messageIP {
     [MessageIP sendMessageReadNotification:messageIP];
     [[Catapush allMessages] enumerateObjectsUsingBlock:^(MessageIP *m, NSUInteger idx, BOOL * stop) {
-        NSLog(@"MESSAGE: \(%@)",m.body);
+        NSLog(@"Message: \(%@)",m.body);
     }];
 }
 
