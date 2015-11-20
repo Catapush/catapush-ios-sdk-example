@@ -57,7 +57,7 @@ Easily configure the UI appearance by changing TextFont, Background color attrib
     
 ```
 ###Example
-The following code shoes how to change the appearance of the message bubbles and the navigation bar:
+The following code shows how to change the appearance of the message bubbles and the navigation bar:
 ```ruby
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
 
