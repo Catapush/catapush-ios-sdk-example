@@ -22,7 +22,7 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
    
-    [Catapush setAppKey:@"1936ff755bc74f186c9ed888d573fcc9"];
+    [Catapush setAppKey:@"YOUR_APP_KEY"];
     
     [Catapush startWithIdentifier: @"test" andPassword:@"test"];
     
