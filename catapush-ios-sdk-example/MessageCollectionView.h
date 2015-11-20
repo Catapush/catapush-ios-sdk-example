@@ -10,6 +10,6 @@
 
 @interface MessageCollectionView : UICollectionView
 
-@property (nonatomic, strong) UIFont *bodyMesssageFont UI_APPEARANCE_SELECTOR;
+@property (nonatomic, strong) UIFont *messageTextFont UI_APPEARANCE_SELECTOR;
 
 @end

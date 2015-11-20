@@ -7,16 +7,13 @@
 //
 
 #import "MessageCollectionView.h"
-
+#import "Constants.h"
 @implementation MessageCollectionView
 
-
 -(id) initWithCoder:(NSCoder *)aDecoder {
-    
     self = [super initWithCoder:aDecoder];
-    
-    self.bodyMesssageFont = [UIFont systemFontOfSize:14];
-    
+    self.messageTextFont = [UIFont systemFontOfSize:16];
+    self.backgroundColor = RGB(249,250,252);
     return self;
 }
 

@@ -10,19 +10,14 @@
 
 @interface MessageCell : UICollectionViewCell
 
-@property (nonatomic, assign) CGFloat cornerRadius UI_APPEARANCE_SELECTOR;
-
-@property (nonatomic, strong) UIColor *textColor UI_APPEARANCE_SELECTOR;
-
-@property (nonatomic, strong) UIColor *textBackgroundColor UI_APPEARANCE_SELECTOR;
-
-@property (nonatomic, strong) UIColor *borderColor UI_APPEARANCE_SELECTOR;
-
-@property (nonatomic, assign) CGFloat borderWidth UI_APPEARANCE_SELECTOR;
-
+@property (nonatomic, assign) CGFloat bubbleViewCornerRadius UI_APPEARANCE_SELECTOR;
+@property (nonatomic, assign) CGFloat bubbleViewBorderWidth UI_APPEARANCE_SELECTOR;
+@property (nonatomic, strong) UIColor *bubbleViewBorderColor UI_APPEARANCE_SELECTOR;
+@property (nonatomic, strong) UIColor *bubbleViewColor UI_APPEARANCE_SELECTOR;
+@property (nonatomic, strong) UIColor *messageTextColor UI_APPEARANCE_SELECTOR;
 @property (nonatomic,strong) UITextView *textView;
 
 -(void)setText:(NSString *)text;
-
 -(void) setTimestamp:(NSDate*) date;
+
 @end
