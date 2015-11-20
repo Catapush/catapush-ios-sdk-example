@@ -7,36 +7,52 @@ This project shows how quickly Catapush iOS SDK can be integrated into your curr
 ![alt tag](https://github.com/Catapush/catapush-ios-sdk-example/blob/master/catapush_screen_shot.jpg)
 
 
-##Build Steps
+##Usage
 
+
+1. git clone https://github.com/Catapush/catapush-ios-sdk-example.git
+2. cd catapush-ios-sdk-example
+3. pod install
+4. open catapush-ios-sdk-example.xcworkspace
+5. Get your App Key from [Catapush Dashboard](http://www.catapush.com) and insert it together with a couple of credentials of your choice into your application delegate application:didFinishLaunchingWithOption:
 ```ruby
-git clone https://github.com/Catapush/catapush-ios-sdk-example.git
-cd catapush-ios-sdk-example
-pod install
-open catapush-ios-sdk-example.xcworkspace
+- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+    [Catapush setAppKey:@"YOUR_APP_KEY"];
+    [Catapush startWithIdentifier: @"test" andPassword:@"test"];
+    return YES;
+}
 ```
+6. Run the app
+7. Back to your [Catapush Dashboard](http://www.catapush.com) and send some important message.
 
+
+#Advanced
 Read the following documentation to enable push notification: [Catapush - Apple APNs Push Notification setup manual](http://www.catapush.com/docs-ios?__hssc=240266844.6.1447949295248&__hstc=240266844.8906dd1311d28178e3c8bdbb3bf2886a.1447404199228.1447945741012.1447949295248.9&hsCtaTracking=315ccd2b-1bb0-4020-b9f9-8b8dec529f1f|efb89882-78ec-4125-9441-59cdfd6082b2).
-
-
-
 
 
 ## UI appearance
 Easily configure the UI appearance by changing TextFont, Background color attributes.
 
 ```ruby
- [[MessageCell appearance] setCornerRadius:10];
+ [[MessageCell appearance] setBubbleViewCornerRadius:10];
     
- [[MessageCell appearance] setTextBackgroundColor:[UIColor whiteColor]];
+ [[MessageCell appearance] setBubbleViewBorderColor:[UIColor colorWithWhite:0 alpha:0.2]];
     
- [[MessageCell appearance] setTextColor:RGB(68,68,68)];
+ [[MessageCell appearance] setBubbleViewColor:[UIColor lightGrayColor]];
     
- [[MessageCell appearance] setBorderColor:[UIColor colorWithWhite:0 alpha:0.2]];
+ [[MessageCell appearance] setBubbleViewBorderWidth:0.5];
     
- [[MessageCell appearance] setBorderWidth:0.5];
+ [[MessageCell appearance] setMessageTextColor:[UIColor whiteColor]];
     
  [[MessageCollectionView appearance] setBackgroundColor:RGB(249,250,252)];
     
- [[MessageCollectionView appearance] setBodyMesssageFont:[UIFont fontWithName:@"HelveticaNeue" size:18]];
+ [[MessageCollectionView appearance] setMessageTextFont:[UIFont fontWithName:@"HelveticaNeue" size:18]];
+    
+ [[MessageNavigationBar appearance] setBarTintColor:[UIColor redColor]];
+
+ [[MessageNavigationBar appearance] setTitleTextAttributes: @{
+                                            NSForegroundColorAttributeName:[UIColor greenColor],
+                                            NSFontAttributeName:[UIFont fontWithName:@"HelveticaNeue-CondensedBlack" size:21.0]
+                                            }];
+    
 ```
