@@ -57,12 +57,13 @@ Easily configure the UI appearance by changing TextFont, Background color attrib
     
 ```
 ###Example
-Let's change the appearance of the message bubbles and the navigation bar with the following code:
+The following code shoes how to change the appearance of the message bubbles and the navigation bar:
 ```ruby
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
 
 ...
 
+   // Bubble Message 
   [[MessageCell appearance] setBubbleViewCornerRadius:10];
   [[MessageCell appearance] setBubbleViewBorderColor:[UIColor colorWithWhite:0 alpha:0.2]];
   [[MessageCell appearance] setBubbleViewColor:[UIColor lightGrayColor]];
@@ -74,6 +75,8 @@ Let's change the appearance of the message bubbles and the navigation bar with t
                                                                            alpha:0]];
     
   [[MessageCollectionView appearance] setMessageTextFont:[UIFont fontWithName:@"HelveticaNeue" size:18]];
+
+  // Navigationbar
   [[MessageNavigationBar appearance] setBarTintColor:[UIColor redColor]];
     
   NSShadow *shadow = [NSShadow new];
