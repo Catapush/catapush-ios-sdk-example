@@ -34,22 +34,14 @@ Read the following documentation to enable push notification: [Catapush - Apple 
 Easily configure the UI appearance by changing TextFont, Background color attributes.
 
 ```ruby
- [[MessageCell appearance] setBubbleViewCornerRadius:10];
-    
+ [[MessageCell appearance] setBubbleViewCornerRadius:10];  
  [[MessageCell appearance] setBubbleViewBorderColor:[UIColor colorWithWhite:0 alpha:0.2]];
-    
  [[MessageCell appearance] setBubbleViewColor:[UIColor lightGrayColor]];
-    
  [[MessageCell appearance] setBubbleViewBorderWidth:0.5];
-    
  [[MessageCell appearance] setMessageTextColor:[UIColor whiteColor]];
-    
- [[MessageCollectionView appearance] setBackgroundColor:RGB(249,250,252)];
-    
+ [[MessageCollectionView appearance] setBackgroundColor:[UIColor colorWithRed:249.0/255.0 green:250.0/255.0 blue:252.0/255.0 alpha:0]];
  [[MessageCollectionView appearance] setMessageTextFont:[UIFont fontWithName:@"HelveticaNeue" size:18]];
-    
  [[MessageNavigationBar appearance] setBarTintColor:[UIColor redColor]];
-
  [[MessageNavigationBar appearance] setTitleTextAttributes: @{
                                             NSForegroundColorAttributeName:[UIColor greenColor],
                                             NSFontAttributeName:[UIFont fontWithName:@"HelveticaNeue-CondensedBlack" size:21.0]
