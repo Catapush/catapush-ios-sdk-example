@@ -82,7 +82,7 @@ The following code shows how to change the appearance of the message bubbles and
 
 
 ##Clipboard
-Long tap on a text to copy it to the clipboard.
-![alt tag](https://github.com/Catapush/catapush-ios-sdk-example/blob/master/catapush_screen_shot_custom_clipboard.jpg)
+Use Long tap to copy a text into clipboard.
+![alt tag](https://github.com/Catapush/catapush-ios-sdk-example/blob/master/catapush_screen_shot_clipboard.jpg)
 
 
