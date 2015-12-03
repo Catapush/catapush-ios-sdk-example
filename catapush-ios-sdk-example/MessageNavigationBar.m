@@ -13,7 +13,7 @@
 
 -(id) initWithCoder:(NSCoder *)aDecoder {
     self = [super initWithCoder:aDecoder];
-    [super setBarTintColor: RGB(93,191,238)];
+    [super setBarTintColor: RGB(0,144,213)];
     [super setTitleTextAttributes:@{NSForegroundColorAttributeName:RGB(245,245,255.0)}];
     return self;
 }
