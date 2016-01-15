@@ -57,14 +57,14 @@ static float CollectionInset = 5;
   if (indexPath.row > 0) {
     NSIndexPath *prevIndex = [NSIndexPath indexPathForRow:(indexPath.row - 1) inSection:indexPath.section];
     MessageIP *prevMsg = [self.fetchedResultsController objectAtIndexPath:prevIndex];
-    NSTimeInterval timeGap = [message.sendTime timeIntervalSinceDate:prevMsg.sendTime];
+    NSTimeInterval timeGap = [message.sentTime timeIntervalSinceDate:prevMsg.sentTime];
     if(timeGap/60 > 5) {
-        return message.sendTime;
+        return message.sentTime;
     } else {
       return nil;
     }
   }
-  return message.sendTime;
+  return message.sentTime;
 }
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
@@ -106,7 +106,6 @@ static float CollectionInset = 5;
     if (messageIP.status.integerValue == MessageIP_NOT_READ) {
         messageIP.status = [NSNumber numberWithInteger:MessageIP_READ];
         [MessageIP sendMessageReadNotification:messageIP];
-        NSLog(@"sending reading notification for message with id: %@", messageIP.identifier);
     }
 }
 
