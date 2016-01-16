@@ -113,7 +113,7 @@ static float CollectionInset = 5;
     if (!_fetchedResultsController) {
         NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"MessageIP"];
         request.predicate = nil;
-        request.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"sendTime" ascending:YES]];
+        request.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"sentTime" ascending:YES]];
         
         _fetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:request
                                                                         managedObjectContext:self.managedObjectContext
