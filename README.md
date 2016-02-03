@@ -74,7 +74,7 @@ The following code shows how to change the appearance of the message bubbles and
     [[MessageNavigationBar appearance] setTitleTextAttributes: attrbutes];
     [[MessageNavigationBar appearance] setBarTintColor:[UIColor redColor]];
     
- 
+  
 
 }
 ```
