@@ -40,9 +40,9 @@ This project shows how quickly Catapush iOS SDK can be integrated into your curr
 7. Back to your [Catapush Dashboard](http://www.catapush.com) and send some important message.
 
 Note:
-1. this example allows to receive VoIP push notification. A VoIP Push Notification Certificate has to be
+This example allows to receive VoIP push notification. A VoIP Push Notification Certificate has to be
 associated to this app.
-2. If you set ```voIPDelegate``` to nil of the method ```registerUserNotification:self voIPDelegate:```, then Catapush Library will not call ```didReceiveIncomingPushWithPayload/1``` and will display an alert message and will play a default sound when a notification is received.
+If you set ```voIPDelegate``` to nil of the method ```registerUserNotification:self voIPDelegate:```, then Catapush Library will not call ```didReceiveIncomingPushWithPayload/1``` and will display an alert message and will play a default sound when a notification is received.
 
 ## Creating a VoIP certificate in the Apple Developer Member Center
 You must also create a certificate for your VoIP app. Each VoIP app requires its own individual VoIP Services certificate, mapped to a unique App ID. This certificate allows your notification server to connect to the VoIP service. Visit the Apple Developer Member Center and create a new VoIP Services Certificate.
