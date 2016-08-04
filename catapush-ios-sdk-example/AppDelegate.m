@@ -13,7 +13,7 @@
 #import "Constants.h"
 #import "MessageNavigationBar.h"
 
-@interface AppDelegate () <CatapushDelegate,MessagesDispatchDelegate>
+@interface AppDelegate () <CatapushDelegate,MessagesDispatchDelegate,VoIPNotificationDelegate>
 
 @end
 
@@ -22,27 +22,24 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     [Catapush setAppKey:@"YOUR_APP_KEY"];
+    
     [Catapush startWithIdentifier: @"test" andPassword:@"test"];
+    
     [Catapush setupCatapushStateDelegate:self andMessagesDispatcherDelegate:self];
-    NSDictionary *remoteNotification = [launchOptions objectForKey: UIApplicationLaunchOptionsRemoteNotificationKey];
     
-    if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 8.0) {
-        [application registerUserNotificationSettings:[UIUserNotificationSettings settingsForTypes:(UIUserNotificationTypeSound | UIUserNotificationTypeAlert | UIUserNotificationTypeBadge) categories:nil]];
-        [application registerForRemoteNotifications];
-        
-    } else
-    {
-        [application registerForRemoteNotificationTypes:(UIRemoteNotificationTypeBadge | UIRemoteNotificationTypeSound | UIRemoteNotificationTypeAlert)];
-    }
+    [Catapush registerUserNotification:self voIPDelegate:self];
     
-    application.applicationIconBadgeNumber = 0;
-    if ([remoteNotification[@"sender"] isEqualToString:@"catapush"]) {
-        // Wake up, it's Catapush!
-    }
-
     [self setupUI];
     return YES;
 }
+
+#pragma mark VoIPNotificationDelegate implemenation
+-(void) didReceiveIncomingPushWithPayload:(PKPushPayload *)payload {
+    
+    NSLog(@"Received VoIP notification with payload:%@",payload);
+    
+}
+
 
 - (void)setupUI {
       /*
@@ -99,19 +96,18 @@
 
 }
 
+#pragma mark Standard Push Notification Delegate
 - (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
-    [Catapush registerForRemoteNotificationsWithDeviceToken:deviceToken];
+   // Custom code (can be empty)
 }
 
 - (void)application:(UIApplication *)application didFailToRegisterForRemoteNotificationsWithError:(NSError *)error {
-    NSLog(@"Did Fail Register Notification: %@", error);
+    // Custom code (can be empty)
 }
 
 - (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler
 {
-    [CatapushRemoteNotifications application:application
-                didReceiveRemoteNotification:userInfo
-                      fetchCompletionHandler:completionHandler];
+    // Custom code (can be empty)
 }
 
 - (void)catapushDidConnectSuccessfully:(Catapush *)catapush
