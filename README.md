@@ -40,7 +40,7 @@ This project shows how quickly Catapush iOS SDK can be integrated into your curr
 7. Back to your [Catapush Dashboard](http://www.catapush.com) and send some important message.
 
 Note: this example allows to receive VoIP push notification. A VoIP Push Notification Certificate has to be
-associate to this app.
+associated to this app.
 
 ## UsageCreating a VoIP certificate in the Apple Developer Member Center
 You must also create a certificate for your VoIP app. Each VoIP app requires its own individual VoIP Services certificate, mapped to a unique App ID. This certificate allows your notification server to connect to the VoIP service. Visit the Apple Developer Member Center and create a new VoIP Services Certificate.
