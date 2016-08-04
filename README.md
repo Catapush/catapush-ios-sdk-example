@@ -17,10 +17,23 @@ This project shows how quickly Catapush iOS SDK can be integrated into your curr
 5. Get your App Key from [Catapush Dashboard](http://www.catapush.com) and insert it together with a couple of credentials of your choice into your application delegate application:didFinishLaunchingWithOption:
 ```ruby
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    [Catapush setAppKey:@"YOUR_APP_KEY"];
-    [Catapush startWithIdentifier: @"test" andPassword:@"test"];
+  [Catapush setAppKey:@"YOUR_APP_KEY"];
+
+  [Catapush startWithIdentifier: @"test" andPassword:@"test"];
+
+
+  [Catapush registerUserNotification:self voIPDelegate:self];
+
     return YES;
 }
+
+#pragma mark VoIPNotificationDelegate implementation
+-(void) didReceiveIncomingPushWithPayload:(PKPushPayload *)payload {
+
+    NSLog(@"Received VoIP notification with payload:%@",payload);
+
+}
+
 ```
 6. Run the app
 7. Back to your [Catapush Dashboard](http://www.catapush.com) and send some important message.
@@ -46,7 +59,7 @@ Easily configure the UI appearance by changing TextFont, Background color attrib
                                             NSForegroundColorAttributeName:[UIColor greenColor],
                                             NSFontAttributeName:[UIFont fontWithName:@"HelveticaNeue-CondensedBlack" size:21.0]
                                             }];
-    
+
 ```
 ###Example
 The following code shows how to change the appearance of the message bubbles and the navigation bar:
@@ -59,7 +72,7 @@ The following code shows how to change the appearance of the message bubbles and
     [[MessageCell appearance] setMessageTextColor:[UIColor whiteColor]];
     [[MessageCell appearance] setBubbleViewCornerRadius:2];
     [[MessageCell appearance] setBubbleViewColor:[UIColor lightGrayColor]];
-    
+
     // Customize Navigation Bar - Add Shadow to Navigation Bar Title
     NSShadow *shadow = [NSShadow new];
     shadow.shadowColor = [UIColor colorWithWhite:0 alpha:0.8];
@@ -73,8 +86,8 @@ The following code shows how to change the appearance of the message bubbles and
                                 };
     [[MessageNavigationBar appearance] setTitleTextAttributes: attrbutes];
     [[MessageNavigationBar appearance] setBarTintColor:[UIColor redColor]];
-    
-  
+
+
 
 }
 ```

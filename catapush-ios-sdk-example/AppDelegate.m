@@ -33,7 +33,7 @@
     return YES;
 }
 
-#pragma mark VoIPNotificationDelegate implemenation
+#pragma mark VoIPNotificationDelegate implementation
 -(void) didReceiveIncomingPushWithPayload:(PKPushPayload *)payload {
     
     NSLog(@"Received VoIP notification with payload:%@",payload);
