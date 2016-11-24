@@ -66,10 +66,7 @@ These are pre-requisites for setting up VoIP with Catapush.
 * Make sure your app has an explicit app id and push entitlements in Apple's Developer Portal.
 * Create a VoIP Push Certificate. This can be re-used for development and production.
 
-![alt tag](https://github.com/Catapush/catapush-ios-sdk-pod/blob/master/voip_cert.png)
-
-* Import the VoIP Push Certificate into Keychain Access and export as a .p12 file.
-* Upload the exported .p12 file into your Catapush Application ("Platform" menu item).
+Follow this [step by step tutorial](https://github.com/Catapush/catapush-ios-sdk-pod/blob/master/CREATING_APN_CERTIFICATE.md) to generate VoIP certificate and configure your Catapush applicaton hosted on [Catapush servers](http://www.catapush.com).
 
 ## UI appearance
 You can easily configure the UI appearance by changing TextFont, Background color attributes. You can find this code commented in catapush-ios-sdk-example/catapush-ios-sdk-example/AppDelegate.m
