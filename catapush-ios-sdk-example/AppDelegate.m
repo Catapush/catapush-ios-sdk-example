@@ -7,7 +7,7 @@
 //
 
 #import "AppDelegate.h"
-#import "CatapushHeaders.h"
+#import "Catapush.h"
 #import "MessageCell.h"
 #import "MessageCollectionView.h"
 #import "Constants.h"
@@ -23,11 +23,18 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     [Catapush setAppKey:@"YOUR_APP_KEY"];
     
-    [Catapush startWithIdentifier: @"test" andPassword:@"test"];
+    [Catapush setIdentifier:@"test" andPassword:@"test"];
     
     [Catapush setupCatapushStateDelegate:self andMessagesDispatcherDelegate:self];
     
     [Catapush registerUserNotification:self voIPDelegate:self];
+    
+    NSError *error;
+    [Catapush start:&error];
+    
+    if (error != nil) {
+        // Handle error...
+    }
     
     [self setupUI];
     return YES;
@@ -85,7 +92,12 @@
 }
 
 - (void)applicationWillEnterForeground:(UIApplication *)application {
-    [Catapush applicationWillEnterForeground:application];
+    
+    NSError *error;
+    [Catapush applicationWillEnterForeground:application withError:&error];
+    if (error != nil) {
+        // Handle error...
+    }
 }
 
 - (void)applicationDidBecomeActive:(UIApplication *)application {

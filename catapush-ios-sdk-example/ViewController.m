@@ -8,7 +8,7 @@
 
 #import "ViewController.h"
 #import "MessageCell.h"
-#import "CatapushHeaders.h"
+#import "Catapush.h"
 #import "Constants.h"
 
 static NSString *kCellIdentifier = @"CellConversationId";
