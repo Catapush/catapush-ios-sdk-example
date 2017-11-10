@@ -29,6 +29,8 @@
     
     [Catapush registerUserNotification:self voIPDelegate:self];
     
+    [[UIApplication sharedApplication] registerForRemoteNotifications];
+
     NSError *error;
     [Catapush start:&error];
     
