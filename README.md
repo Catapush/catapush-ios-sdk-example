@@ -65,10 +65,21 @@ You must enable the right capabilites in your Xcode project and create a certifi
 ##Enabling Voice Over IP Push Notifications
 Set the following capabilites in your XCode project:
 
-![alt tag](https://github.com/Catapush/catapush-ios-sdk-pod/blob/master/capabilities_remote_xcode.png)
+![alt tag](https://github.com/Catapush/catapush-ios-sdk-pod/blob/master/images/capabilities_remote_xcode.png)
 
-![alt tag](https://github.com/Catapush/catapush-ios-sdk-pod/blob/master/capabilities_xcode.png)
+![alt tag](https://github.com/Catapush/catapush-ios-sdk-pod/blob/master/images/capabilities_xcode.png)
 
+### Update for Xcode 9
+With Xcode 9 the VOIP Capability is hidden, to continue receiving VOIP Push messages you have to enable in the info.plist file.
+To do so open your project, select Info tab, under 'Required background modes' add ad item with the this content: App provides Voice over IP services
+
+Or Open Info.plist as a source code and add “voip" to UIBackgroundModes manually.
+```
+<key>UIBackgroundModes</key>
+<array>
+    <string>voip</string>
+</array>
+```
 
 ##Certificate, App Id, and Entitlements
 These are pre-requisites for setting up VoIP with Catapush.
