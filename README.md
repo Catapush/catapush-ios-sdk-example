@@ -26,7 +26,7 @@ This project shows how quickly Catapush iOS SDK can be integrated into your curr
     
     [Catapush setupCatapushStateDelegate:self andMessagesDispatcherDelegate:self];
     
-    [Catapush registerUserNotification:self voIPDelegate:self];
+    [Catapush registerUserNotification:self voIPDelegate:nil];
     
     NSError *error;
     [Catapush start:&error];
@@ -36,6 +36,8 @@ This project shows how quickly Catapush iOS SDK can be integrated into your curr
     }
     
     [self setupUI];
+    [UNUserNotificationCenter currentNotificationCenter].delegate = self;
+
     return YES;
 
 }
@@ -51,43 +53,71 @@ This project shows how quickly Catapush iOS SDK can be integrated into your curr
 7. Back to your [Catapush Dashboard](http://www.catapush.com) and send a test message from "Your APP" -> Send Push.
 
 
-This example allows to receive VoIP push notification (PushKit framework). A VoIP Push Notification Certificate has to be associated to this app in the section "Your APP" -> Platforms. 
-You can choose if you want read and show directly the push notifications or let the library to handle them, if you set ```voIPDelegate``` to ```nil``` in the method ```didFinishLaunchingWithOptions``` (```registerUserNotification:self voIPDelegate:nil```), then Catapush Library will display an alert message and will play a default sound when a notification is received. Instead if you want to completly handle them you have to implement ```didReceiveIncomingPushWithPayload/1```.
-
-The method ```registerUserNotification/2``` requests registration for standard or Voip push notification. The library choose the right type using the capabilites settings enabled in XCode as described below.
-
-Note: Catapush DOES register user notification for you, so *DO NOT* register user notification by calling instance method  ```registerUserNotificationSettings/1``` of ```UIApplication```.
+Note: Catapush DOES register user notification for you, so DO NOT register user notification by calling instance method of ```UIApplication```.
 
 
-#Prerequisites
-You must enable the right capabilites in your Xcode project and create a certificate for your VoIP app. Each VoIP app requires its own individual VoIP Services certificate, mapped to a unique App ID. This certificate allows your notification server to connect to the VoIP service. Visit the [Apple Developer Member Center](https://developer.apple.com/) and create a new VoIP Services Certificate.
-
-##Enabling Voice Over IP Push Notifications
-Set the following capabilites in your XCode project:
-
-![alt tag](https://github.com/Catapush/catapush-ios-sdk-pod/blob/master/images/capabilities_remote_xcode.png)
-
-![alt tag](https://github.com/Catapush/catapush-ios-sdk-pod/blob/master/images/capabilities_xcode.png)
-
-### Update for Xcode 9
-With Xcode 9 the VOIP Capability is hidden, to continue receiving VOIP Push messages you have to enable in the info.plist file.
-To do so open your project, select Info tab, under 'Required background modes' add ad item with the this content: App provides Voice over IP services
-
-Or Open Info.plist as a source code and add “voip" to UIBackgroundModes manually.
-```
-<key>UIBackgroundModes</key>
-<array>
-    <string>voip</string>
-</array>
-```
-
-##Certificate, App Id, and Entitlements
-These are pre-requisites for setting up VoIP with Catapush.
+# Prerequisites
+These are pre-requisites for setting up your application with Catapush.
+## Certificate, App Id, Push Entitlements and App Groups
 * Make sure your app has an explicit app id and push entitlements in Apple's Developer Portal.
-* Create a VoIP Push Certificate. This can be re-used for development and production.
+* Create an Apple Push Notification Authentication Key and configure your Catapush applicaton hosted on [Catapush servers](http://www.catapush.com).
+* Create a specific App Group for the iOS Application and the Notification Service Extension.
 
-Follow this [step by step tutorial](https://github.com/Catapush/catapush-ios-sdk-pod/blob/master/CREATING_APN_CERTIFICATE.md) to generate VoIP certificate and configure your Catapush applicaton hosted on [Catapush servers](http://www.catapush.com).
+### Create and configure the authentication key
+This section describes how to generate an authentication key for an App ID enabled for Push Notifications. If you have an existing key, you can use that key instead of generating a new one.
 
+To create an authentication key:
+1) In your [Apple Developer Member Center](https://developer.apple.com/account), go to Certificates, Identifiers & Profiles, and select Keys.
+2) Click the Add button (+) in the upper-right corner.
+3) Enter a description for the APNs Auth Key.
+4) Under Key Services, select the Apple Push Notifications service (APNs) checkbox, and click Continue.
+5) Click Confirm and then Download. Save your key in a secure place. This is a one-time download, and the key cannot be retrieved later.
+
+Once you have download it you have to configure your Catapush application.
+1) Go to https://www.catapush.com/panel/apps/YOUR_APP_ID/platforms.
+2) Click on iOS Token Based to enable it.
+3) Fill iOS Team Id, iOS Key Id, iOS AuthKey and iOS Topic.
+
+The iOS Team Id can be found here https://developer.apple.com/account/#/membership in "Membership Information" section.
+
+The iOS Key Id can be retrieved here https://developer.apple.com/account/resources/authkeys/list, click on the key you have created and you can find it under "View Key Details" section.
+
+The iOS AuthKey is the content of the key file.
+
+Example:
+```ruby
+-----BEGIN PRIVATE KEY-----
+...........................
+          AUTH_KEY
+...........................
+-----END PRIVATE KEY-----
+```
+
+The iOS Topic is the bundle identifier of your iOS application.
+
+![alt tag](https://github.com/Catapush/catapush-ios-sdk-pod/blob/master/images/catapush_ios_token_based.png)
+
+
+### Notification Service Extension
+In order to process the push notification a Notification Service Extension is required.
+An example is already implemented.
+
+### AppGroups
+Catapush need that the Notification Service Extension and the main application can share resources.
+In order to do that you have to create and enable a specific app group for both the application and the extension.
+The app and the extansion must be in the same app group.
+![alt tag](https://github.com/Catapush/catapush-ios-sdk-pod/blob/master/images/appgroup_1.png)
+![alt tag](https://github.com/Catapush/catapush-ios-sdk-pod/blob/master/images/appgroup_2.png)
+![alt tag](https://github.com/Catapush/catapush-ios-sdk-pod/blob/master/images/catapush_ios_token_based.png)
+
+You should also add this information in the App plist and the Extension plist:
+```ruby
+    <key>Catapush</key>
+    <dict>
+        <key>AppGroup</key>
+        <string>group.catapush.test</string>
+    </dict>
+```
 ## UI appearance
 You can easily configure the UI appearance by changing TextFont, Background color attributes. You can find this code commented in catapush-ios-sdk-example/catapush-ios-sdk-example/AppDelegate.m
 

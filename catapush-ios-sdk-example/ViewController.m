@@ -3,7 +3,7 @@
 //  catapush-ios-sdk-example
 //
 //  Created by Chiarotto Alessandro on 11/11/15.
-//  Copyright © 2015 Divisumma. All rights reserved.
+//  Copyright © 2015 Catapush. All rights reserved.
 //
 
 #import "ViewController.h"
@@ -29,6 +29,14 @@ static float CollectionInset = 5;
     [self.navigationItem setTitle:@"Messages"];
     [self.collectionView registerClass:[MessageCell class] forCellWithReuseIdentifier:kCellIdentifier];
     [self perfomFetch];
+}
+
+- (void)viewDidAppear:(BOOL)animated{
+    [super viewDidAppear:animated];
+    [[NSNotificationCenter defaultCenter] addObserver: self
+                                             selector: @selector(perfomFetch)
+                                                 name: UIApplicationWillEnterForegroundNotification
+                                               object: nil];
 }
 
 #pragma mark UICollectionView Delegates
@@ -77,6 +85,16 @@ static float CollectionInset = 5;
     CGSize size = [textView sizeThatFits:CGSizeMake(cellWidth, CGFLOAT_MAX)];
     float cellHeight = ([self previousDate:message withIndexPath:indexPath] ? size.height+TimestampHeight:size.height);
     return CGSizeMake(cellWidth, cellHeight);
+}
+
+- (void)viewDidDisappear:(BOOL)animated{
+    [super viewDidDisappear:animated];
+    [self.fetchedResultsController setDelegate:nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+    [[NSNotificationCenter defaultCenter] addObserver: self
+                                             selector: @selector(perfomFetch)
+                                                 name: UIApplicationWillEnterForegroundNotification
+                                               object: nil];
 }
 
 - (void)perfomFetch {

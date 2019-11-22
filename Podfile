@@ -7,3 +7,6 @@ target 'catapush-ios-sdk-example' do
 pod "catapush-ios-sdk-pod"
 end
 
+target 'Service' do
+pod "catapush-ios-sdk-pod"
+end

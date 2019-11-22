@@ -3,7 +3,7 @@
 //  catapush-ios-sdk-example
 //
 //  Created by Chiarotto Alessandro on 11/11/15.
-//  Copyright © 2015 Divisumma. All rights reserved.
+//  Copyright © 2015 Catapush. All rights reserved.
 //
 
 #import "AppDelegate.h"
@@ -13,7 +13,7 @@
 #import "Constants.h"
 #import "MessageNavigationBar.h"
 
-@interface AppDelegate () <CatapushDelegate,MessagesDispatchDelegate,VoIPNotificationDelegate>
+@interface AppDelegate () <CatapushDelegate,MessagesDispatchDelegate>
 
 @end
 
@@ -27,10 +27,8 @@
     
     [Catapush setupCatapushStateDelegate:self andMessagesDispatcherDelegate:self];
     
-    [Catapush registerUserNotification:self voIPDelegate:self];
+    [Catapush registerUserNotification:self voIPDelegate:nil];
     
-    [[UIApplication sharedApplication] registerForRemoteNotifications];
-
     NSError *error;
     [Catapush start:&error];
     
@@ -39,14 +37,8 @@
     }
     
     [self setupUI];
+    [UNUserNotificationCenter currentNotificationCenter].delegate = self;
     return YES;
-}
-
-#pragma mark VoIPNotificationDelegate implementation
--(void) didReceiveIncomingPushWithPayload:(PKPushPayload *)payload {
-    
-    NSLog(@"Received VoIP notification with payload:%@",payload);
-    
 }
 
 
@@ -86,7 +78,7 @@
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application {
-    
+
 }
 
 - (void)applicationDidEnterBackground:(UIApplication *)application {
@@ -103,11 +95,11 @@
 }
 
 - (void)applicationDidBecomeActive:(UIApplication *)application {
-
+    [Catapush applicationDidBecomeActive:application];
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application {
-
+    [Catapush applicationWillTerminate:application];
 }
 
 #pragma mark Standard Push Notification Delegate
@@ -116,11 +108,6 @@
 }
 
 - (void)application:(UIApplication *)application didFailToRegisterForRemoteNotificationsWithError:(NSError *)error {
-    // Custom code (can be empty)
-}
-
-- (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler
-{
     // Custom code (can be empty)
 }
 
@@ -163,6 +150,15 @@
     [[Catapush allMessages] enumerateObjectsUsingBlock:^(MessageIP *m, NSUInteger idx, BOOL * stop) {
         NSLog(@"Message: \(%@)",m.body);
     }];
+}
+
+- (void)userNotificationCenter:(UNUserNotificationCenter *)center didReceiveNotificationResponse:(UNNotificationResponse *)response withCompletionHandler:(void (^)(void))completionHandler{
+    //quando si clicca sulla notifica
+    completionHandler();
+}
+
+- (void)userNotificationCenter:(UNUserNotificationCenter *)center willPresentNotification:(UNNotification *)notification withCompletionHandler:(void (^)(UNNotificationPresentationOptions))completionHandler{
+    completionHandler(UNNotificationPresentationOptionNone);
 }
 
 @end
