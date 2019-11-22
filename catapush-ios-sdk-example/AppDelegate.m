@@ -27,7 +27,7 @@
     
     [Catapush setupCatapushStateDelegate:self andMessagesDispatcherDelegate:self];
     
-    [Catapush registerUserNotification:self voIPDelegate:nil];
+    [Catapush registerUserNotification:self];
     
     NSError *error;
     [Catapush start:&error];

@@ -26,7 +26,7 @@ This project shows how quickly Catapush iOS SDK can be integrated into your curr
     
     [Catapush setupCatapushStateDelegate:self andMessagesDispatcherDelegate:self];
     
-    [Catapush registerUserNotification:self voIPDelegate:nil];
+    [Catapush registerUserNotification:self];
     
     NSError *error;
     [Catapush start:&error];
@@ -42,12 +42,6 @@ This project shows how quickly Catapush iOS SDK can be integrated into your curr
 
 }
 
-#pragma mark VoIPNotificationDelegate implementation
--(void) didReceiveIncomingPushWithPayload:(PKPushPayload *)payload {
-    
-    NSLog(@"Received VoIP notification with payload:%@",payload);
-    
-}
 ```
 6. Run the app
 7. Back to your [Catapush Dashboard](http://www.catapush.com) and send a test message from "Your APP" -> Send Push.
