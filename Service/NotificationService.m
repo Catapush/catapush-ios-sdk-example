@@ -35,6 +35,9 @@
     if (error.code == CatapushNoMessagesError) {
         self.bestAttemptContent.body = @"No new message";
     }
+    if (error.code == CatapushFileProtectionError) {
+        self.bestAttemptContent.body = @"Unlock the device at least once to receive the message";
+    }
 }
 
 - (void)handleMessage:(MessageIP *) message{
