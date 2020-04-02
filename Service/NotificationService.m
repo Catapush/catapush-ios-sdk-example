@@ -38,6 +38,7 @@
     if (error.code == CatapushFileProtectionError) {
         self.bestAttemptContent.body = @"Unlock the device at least once to receive the message";
     }
+    self.contentHandler(self.bestAttemptContent);
 }
 
 - (void)handleMessage:(MessageIP *) message{
