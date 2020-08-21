@@ -10,44 +10,47 @@
 
 @interface NotificationService ()
 
-@property (nonatomic, strong) void (^contentHandler)(UNNotificationContent *contentToDeliver);
-@property (nonatomic, strong) UNNotificationRequest *receivedRequest;
-@property (nonatomic, strong) UNMutableNotificationContent *bestAttemptContent;
-
 @end
 
 @implementation NotificationService
 
 - (void)didReceiveNotificationRequest:(UNNotificationRequest *)request withContentHandler:(void (^)(UNNotificationContent * _Nonnull))contentHandler {
-    self.receivedRequest = request;
-    self.contentHandler = contentHandler;
-    self.bestAttemptContent = [request.content mutableCopy];
     [super didReceiveNotificationRequest:request withContentHandler:contentHandler];
 }
 
-- (void)handleError:(NSError *) error{
-    if (error.code == CatapushCredentialsError) {
-        self.bestAttemptContent.body = @"User not logged in";
+- (void)handleError:(NSError *) error withContentHandler:(void (^)(UNNotificationContent * _Nonnull))contentHandler withBestAttemptContent:(UNMutableNotificationContent *)bestAttemptContent{
+    if (contentHandler != nil && bestAttemptContent != nil){
+        if (error.code == CatapushCredentialsError) {
+            bestAttemptContent.body = @"User not logged in";
+        }
+        if (error.code == CatapushNetworkError) {
+            bestAttemptContent.body = @"Network error";
+        }
+        if (error.code == CatapushNoMessagesError) {
+            bestAttemptContent.body = @"No new message";
+        }
+        if (error.code == CatapushFileProtectionError) {
+            bestAttemptContent.body = @"Unlock the device at least once to receive the message";
+        }
+        if (error.code == CatapushConflictErrorCode) {
+            bestAttemptContent.body = @"Connected from another resource";
+        }
+        if (error.code == CatapushAppIsActive) {
+            bestAttemptContent.body = @"Please open the app to read the message";
+        }
+        contentHandler(bestAttemptContent);
     }
-    if (error.code == CatapushNetworkError) {
-        self.bestAttemptContent.body = @"Newtork error";
-    }
-    if (error.code == CatapushNoMessagesError) {
-        self.bestAttemptContent.body = @"No new message";
-    }
-    if (error.code == CatapushFileProtectionError) {
-        self.bestAttemptContent.body = @"Unlock the device at least once to receive the message";
-    }
-    self.contentHandler(self.bestAttemptContent);
 }
 
-- (void)handleMessage:(MessageIP *) message{
-    if (message != nil) {
-        self.bestAttemptContent.body = message.body.copy;
-    }else{
-        self.bestAttemptContent.body = @"No new message";
+- (void)handleMessage:(MessageIP *) message withContentHandler:(void (^)(UNNotificationContent * _Nonnull))contentHandler withBestAttemptContent:(UNMutableNotificationContent *)bestAttemptContent{
+    if (contentHandler != nil && bestAttemptContent != nil){
+        if (message != nil) {
+            bestAttemptContent.body = message.body.copy;
+        }else{
+            bestAttemptContent.body = @"No new message";
+        }
+        contentHandler(bestAttemptContent);
     }
-    self.contentHandler(self.bestAttemptContent);
 }
 
 @end

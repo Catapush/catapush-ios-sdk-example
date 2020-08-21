@@ -357,7 +357,7 @@
 			);
 			inputPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-Service/Pods-Service-resources.sh",
-				"${PODS_ROOT}/../../catapush-ios-sdk-pod/CatapushKit/CatapushLibBundle.bundle",
+				"${PODS_ROOT}/catapush-ios-sdk-pod/CatapushKit/CatapushLibBundle.bundle",
 			);
 			name = "[CP] Copy Pods Resources";
 			outputPaths = (
@@ -375,7 +375,7 @@
 			);
 			inputPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-catapush-ios-sdk-example/Pods-catapush-ios-sdk-example-resources.sh",
-				"${PODS_ROOT}/../../catapush-ios-sdk-pod/CatapushKit/CatapushLibBundle.bundle",
+				"${PODS_ROOT}/catapush-ios-sdk-pod/CatapushKit/CatapushLibBundle.bundle",
 			);
 			name = "[CP] Copy Pods Resources";
 			outputPaths = (
