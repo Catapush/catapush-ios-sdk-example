@@ -18,7 +18,7 @@
     [super didReceiveNotificationRequest:request withContentHandler:contentHandler];
 }
 
-- (void)handleError:(NSError *) error withContentHandler:(void (^)(UNNotificationContent * _Nonnull))contentHandler withBestAttemptContent:(UNMutableNotificationContent *)bestAttemptContent{
+- (void)handleError:(NSError * _Nonnull) error withContentHandler:(void (^_Nullable)(UNNotificationContent * _Nullable))contentHandler  withBestAttemptContent: (UNMutableNotificationContent* _Nullable) bestAttemptContent{
     if (contentHandler != nil && bestAttemptContent != nil){
         if (error.code == CatapushCredentialsError) {
             bestAttemptContent.body = @"User not logged in";
@@ -42,7 +42,7 @@
     }
 }
 
-- (void)handleMessage:(MessageIP *) message withContentHandler:(void (^)(UNNotificationContent * _Nonnull))contentHandler withBestAttemptContent:(UNMutableNotificationContent *)bestAttemptContent{
+- (void)handleMessage:(MessageIP * _Nullable) message withContentHandler:(void (^_Nullable)(UNNotificationContent * _Nullable))contentHandler  withBestAttemptContent: (UNMutableNotificationContent* _Nullable) bestAttemptContent{
     if (contentHandler != nil && bestAttemptContent != nil){
         if (message != nil) {
             bestAttemptContent.body = message.body.copy;
