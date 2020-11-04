@@ -12,20 +12,22 @@
 #import "MessageCollectionView.h"
 #import "Constants.h"
 #import "MessageNavigationBar.h"
+#import "SampleCatapushStateDelegate.h"
 
-@interface AppDelegate () <CatapushDelegate,MessagesDispatchDelegate>
-
+@interface AppDelegate () <MessagesDispatchDelegate>
+@property (strong, nonatomic) SampleCatapushStateDelegate *catapushStateDelegate;
 @end
 
 @implementation AppDelegate
 
+@synthesize catapushStateDelegate;
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     [Catapush setAppKey:@"YOUR_APP_KEY"];
     
     [Catapush setIdentifier:@"test" andPassword:@"test"];
     
-    [Catapush setupCatapushStateDelegate:self andMessagesDispatcherDelegate:self];
+    [Catapush setupCatapushStateDelegate:catapushStateDelegate andMessagesDispatcherDelegate:self];
     
     [Catapush registerUserNotification:self];
     
@@ -33,7 +35,7 @@
     [Catapush start:&error];
     
     if (error != nil) {
-        // Handle error...
+        // API KEY, USERNAME or PASSWORD not set
     }
     
     [self setupUI];
@@ -90,7 +92,7 @@
     NSError *error;
     [Catapush applicationWillEnterForeground:application withError:&error];
     if (error != nil) {
-        // Handle error...
+        // API KEY, USERNAME or PASSWORD not set
     }
 }
 
@@ -111,40 +113,6 @@
     // Custom code (can be empty)
 }
 
-- (void)catapushDidConnectSuccessfully:(Catapush *)catapush
-{
-    UIAlertView *connectedAV = [[UIAlertView alloc] initWithTitle:@"Connected"
-                                                          message:@"Catapush Connected!" delegate:self
-                                                cancelButtonTitle:@"Ok" otherButtonTitles:nil];
-    [connectedAV show];
-}
-
-- (void)catapush:(Catapush *)catapush didFailOperation:(NSString *)operationName withError:(NSError *)error {
-    if ([error.domain isEqualToString:CATAPUSH_ERROR_DOMAIN]) {
-        switch (error.code) {
-            case WRONG_AUTHENTICATION:
-                break;
-            case INVALID_APP_KEY:
-                break;
-            case USER_NOT_FOUND:
-                break;
-            case GENERIC:
-                break;
-            default:
-                break;
-        }
-    }
-    
-    NSString *errorMsg = [NSString stringWithFormat:@"The operation %@ is failed with error:\n%@", operationName, [error localizedDescription]];
-    
-    UIAlertView *flowErrorAlertView = [[UIAlertView alloc] initWithTitle:@"Error"
-                                                                 message:errorMsg
-                                                                delegate:self
-                                                       cancelButtonTitle:@"Ok"
-                                                       otherButtonTitles:nil];
-    [flowErrorAlertView show];
-}
-
 -(void)libraryDidReceiveMessageIP:(MessageIP *)messageIP {
     [MessageIP sendMessageReadNotification:messageIP];
     [[Catapush allMessages] enumerateObjectsUsingBlock:^(MessageIP *m, NSUInteger idx, BOOL * stop) {
@@ -153,7 +121,7 @@
 }
 
 - (void)userNotificationCenter:(UNUserNotificationCenter *)center didReceiveNotificationResponse:(UNNotificationResponse *)response withCompletionHandler:(void (^)(void))completionHandler{
-    //quando si clicca sulla notifica
+    //tap on notification
     completionHandler();
 }
 

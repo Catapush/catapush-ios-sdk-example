@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		4D328E002388281900AC3B67 /* NotificationService.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D328DFF2388281900AC3B67 /* NotificationService.m */; };
 		4D328E042388281900AC3B67 /* Service.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 4D328DFC2388281900AC3B67 /* Service.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		4DD64C6C25518A2100FAD920 /* SampleCatapushStateDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4DD64C6B25518A2100FAD920 /* SampleCatapushStateDelegate.m */; };
 		7D337DF379922BFA70C0FA3C /* libPods-catapush-ios-sdk-example.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 67A37E4D1C341240EE5DFC61 /* libPods-catapush-ios-sdk-example.a */; };
 		9D6D2B3B1BF71D6300EA23F1 /* MessageCollectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D6D2B3A1BF71D6300EA23F1 /* MessageCollectionView.m */; };
 		9D78339B1BFF557D001BA771 /* MessageNavigationBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D78339A1BFF557D001BA771 /* MessageNavigationBar.m */; };
@@ -53,6 +54,8 @@
 		4D328DFF2388281900AC3B67 /* NotificationService.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NotificationService.m; sourceTree = "<group>"; };
 		4D328E012388281900AC3B67 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4D328E09238829B600AC3B67 /* Service.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Service.entitlements; sourceTree = "<group>"; };
+		4DD64C6A25518A2100FAD920 /* SampleCatapushStateDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SampleCatapushStateDelegate.h; sourceTree = "<group>"; };
+		4DD64C6B25518A2100FAD920 /* SampleCatapushStateDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SampleCatapushStateDelegate.m; sourceTree = "<group>"; };
 		61881E4A42217A624E35A94A /* libPods-Service.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Service.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		67A37E4D1C341240EE5DFC61 /* libPods-catapush-ios-sdk-example.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-catapush-ios-sdk-example.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		893ABBA23A6834642506A691 /* Pods-catapush-ios-sdk-example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-catapush-ios-sdk-example.debug.xcconfig"; path = "Pods/Target Support Files/Pods-catapush-ios-sdk-example/Pods-catapush-ios-sdk-example.debug.xcconfig"; sourceTree = "<group>"; };
@@ -185,6 +188,8 @@
 				9DB92C481BF3338000B5F43F /* LaunchScreen.storyboard */,
 				9DB92C4B1BF3338000B5F43F /* Info.plist */,
 				9DB92C3A1BF3338000B5F43F /* Supporting Files */,
+				4DD64C6A25518A2100FAD920 /* SampleCatapushStateDelegate.h */,
+				4DD64C6B25518A2100FAD920 /* SampleCatapushStateDelegate.m */,
 			);
 			path = "catapush-ios-sdk-example";
 			sourceTree = "<group>";
@@ -407,6 +412,7 @@
 				9DB92C3F1BF3338000B5F43F /* AppDelegate.m in Sources */,
 				9DB92C3C1BF3338000B5F43F /* main.m in Sources */,
 				9D6D2B3B1BF71D6300EA23F1 /* MessageCollectionView.m in Sources */,
+				4DD64C6C25518A2100FAD920 /* SampleCatapushStateDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
