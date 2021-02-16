@@ -14,7 +14,7 @@
 @implementation SampleCatapushStateDelegate
 
 - (void)catapushDidConnectSuccessfully:(Catapush *)catapush {
-    UIAlertView *connectedAV = [[UIAlertView alloc] initWithTitle:@"Connected"
+   UIAlertView *connectedAV = [[UIAlertView alloc] initWithTitle:@"Connected"
                                                           message:@"Catapush Connected!" delegate:self
                                                 cancelButtonTitle:@"Ok" otherButtonTitles:nil];
     [connectedAV show];
@@ -38,7 +38,7 @@
             case WRONG_AUTHENTICATION:
                 /*
                  Please verify your identifier and password validity. The user might have been deleted from the Catapush app (via API or from the dashboard) or the password has changed.
-
+                 
                  You should not keep retrying, delete the stored credentials.
                  Provide a new identifier to this installation to solve the issue.
                  */
@@ -49,18 +49,17 @@
                  This is probably due to a temporary service disruption.
                  Please try again in a few minutes.
                  */
-                [self retry:LONG_DELAY];
-                break;
+                return [self retry:LONG_DELAY];
             case XMPP_MULTIPLE_LOGIN:
                 /*
                  The same user identifier has been logged on another device, the messaging service will be stopped on this device
                  Please check that you are using a unique identifier for each device, even on devices owned by the same user.
                  */
-                break;
+                return;
             case API_UNAUTHORIZED:
                 /*
                  The credentials has been rejected    Please verify your identifier and password validity. The user might have been deleted from the Catapush app (via API or from the dashboard) or the password has changed.
-
+                 
                  You should not keep retrying, delete the stored credentials.
                  Provide a new identifier to this installation to solve the issue.
                  */
@@ -73,20 +72,18 @@
                  This is probably due to a temporary service disruption.
                  Please try again in a few minutes.
                  */
-                [self retry:LONG_DELAY];
-                break;
+                return [self retry:LONG_DELAY];
             case REGISTRATION_BAD_REQUEST:
                 /*
                  Internal error of the remote messaging service    An unexpected internal error on the remote messaging service has occurred.
                  This is probably due to a temporary service disruption.
                  Please try again in a few minutes.
                  */
-                [self retry:LONG_DELAY];
-                break;
+                return [self retry:LONG_DELAY];
             case REGISTRATION_FORBIDDEN_WRONG_AUTH:
                 /*
                  Wrong auth    Please verify your identifier and password validity. The user might have been deleted from the Catapush app (via API or from the dashboard) or the password has changed.
-
+                 
                  You should not keep retrying, delete the stored credentials.
                  Provide a new identifier to this installation to solve the issue.
                  */
@@ -103,7 +100,7 @@
                 /*
                  User not found
                  The user has been probably deleted from the Catapush app (via API or from the dashboard).
-
+                 
                  You should not keep retrying.
                  Provide a new identifier to this installation to solve the issue.
                  */
@@ -114,46 +111,41 @@
                  This is probably due to a temporary service disruption.
                  Please try again in a few minutes.
                  */
-                [self retry:LONG_DELAY];
-                break;
+                return [self retry:LONG_DELAY];
             case OAUTH_BAD_REQUEST:
                 /*
                  Internal error of the remote messaging service    An unexpected internal error on the remote messaging service has occurred.
                  This is probably due to a temporary service disruption.
                  Please try again in a few minutes.
                  */
-                [self retry:LONG_DELAY];
-                break;
+                return [self retry:LONG_DELAY];
             case OAUTH_BAD_REQUEST_INVALID_CLIENT:
                 /*
                  Internal error of the remote messaging service    An unexpected internal error on the remote messaging service has occurred.
                  This is probably due to a temporary service disruption.
                  Please try again in a few minutes.
                  */
-                [self retry:LONG_DELAY];
-                break;
+                return [self retry:LONG_DELAY];
             case OAUTH_BAD_REQUEST_INVALID_GRANT:
                 /*
                  Internal error of the remote messaging service    An unexpected internal error on the remote messaging service has occurred.
                  This is probably due to a temporary service disruption.
                  Please try again in a few minutes.
                  */
-                [self retry:LONG_DELAY];
-                break;
+                return [self retry:LONG_DELAY];
             case OAUTH_INTERNAL_ERROR:
                 /*
                  Internal error of the remote messaging service    An unexpected internal error on the remote messaging service has occurred.
                  This is probably due to a temporary service disruption.
                  Please try again in a few minutes.
                  */
-                [self retry:LONG_DELAY];
-                break;
+                return [self retry:LONG_DELAY];
             case UPDATE_PUSH_TOKEN_FORBIDDEN_WRONG_AUTH:
                 /*
                  Credentials error
                  
                  Please verify your identifier and password validity. The user might have been deleted from the Catapush app (via API or from the dashboard) or the password has changed.
-
+                 
                  You should not keep retrying, delete the stored credentials.
                  Provide a new identifier to this installation to solve the issue.
                  */
@@ -163,7 +155,7 @@
                  Credentials error
                  
                  Please verify your identifier and password validity. The user might have been deleted from the Catapush app (via API or from the dashboard) or the password has changed.
-
+                 
                  You should not keep retrying, delete the stored credentials.
                  Provide a new identifier to this installation to solve the issue.
                  */
@@ -189,7 +181,7 @@
                  User not found
                  
                  Please verify your identifier and password validity. The user might have been deleted from the Catapush app (via API or from the dashboard) or the password has changed.
-
+                 
                  You should not keep retrying, delete the stored credentials.
                  Provide a new identifier to this installation to solve the issue.
                  */
@@ -202,26 +194,52 @@
                  An unexpected internal error on the remote messaging service has occurred.
                  This is probably due to a temporary service disruption.
                  */
-                [self retry:LONG_DELAY];
-                break;
+                return [self retry:LONG_DELAY];
             case NETWORK_ERROR:
                 /*
                  The SDK couldn’t establish a connection to the Catapush remote messaging service.
                  
                  The device is not connected to the internet or it might be blocked by a firewall or the remote messaging service might be temporarily disrupted.    Please check your internet connection and try to reconnect again.
                  */
-                [self retry:SHORT_DELAY];
-                break;
+                return [self retry:SHORT_DELAY];
             case PUSH_TOKEN_UNAVAILABLE:
                 /*
                  Push token is not available.
                  
                  Nothing, it's handled automatically by the sdk.
                  */
-                break;
+                return;
+            case INTERNAL_NETWORK_ERROR:
+                /*
+                 The SDK couldn’t establish a connection to the Catapush remote messaging service.
+                 The device is not connected to the internet or it might be blocked by a firewall or the remote messaging service might be temporarily disrupted.
+                 
+                 Nothing, it's handled automatically by the sdk. Just for debug.
+                 
+                 You could check underlyingError to obtain the error just for debug.
+                 if (error.userInfo != nil) {
+                 NSError* underlyingError = error.userInfo[NSUnderlyingErrorKey];
+                 }
+                 */
+                return;
+            case UPLOAD_FILE_ERROR:
+                /*
+                 There was a problem while sending an attachment.
+                 The device is not connected to the internet or it might be blocked by a firewall or the remote messaging service might be temporarily disrupted.
+                 
+                 You could check underlyingError to obtain the error just for debug.
+                 if (error.userInfo != nil) {
+                 NSError* underlyingError = error.userInfo[NSUnderlyingErrorKey];
+                 }
+                 
+                 Please try to send the message again in a few minutes.
+                 */
+                return;
             default:
-                break;
+                return;
         }
+    }else{
+        return [self retry:SHORT_DELAY];
     }
     
     NSString *errorMsg = [NSString stringWithFormat:@"The operation %@ is failed with error:\n%@", operationName, [error localizedDescription]];
