@@ -194,8 +194,8 @@
                  An unexpected internal error on the remote messaging service has occurred.
                  This is probably due to a temporary service disruption.
                  */
-                return [self retry:LONG_DELAY];
-            case NETWORK_ERROR:
+                return;
+           case NETWORK_ERROR:
                 /*
                  The SDK couldn’t establish a connection to the Catapush remote messaging service.
                  
