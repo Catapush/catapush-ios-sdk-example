@@ -23,6 +23,7 @@
 @synthesize catapushStateDelegate;
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+    catapushStateDelegate = [[SampleCatapushStateDelegate alloc] init];
     [Catapush setAppKey:@"YOUR_APP_KEY"];
     
     [Catapush setIdentifier:@"test" andPassword:@"test"];

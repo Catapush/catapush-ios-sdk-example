@@ -14,10 +14,20 @@
 @implementation SampleCatapushStateDelegate
 
 - (void)catapushDidConnectSuccessfully:(Catapush *)catapush {
-   UIAlertView *connectedAV = [[UIAlertView alloc] initWithTitle:@"Connected"
-                                                          message:@"Catapush Connected!" delegate:self
-                                                cancelButtonTitle:@"Ok" otherButtonTitles:nil];
-    [connectedAV show];
+    UIAlertController * alert = [
+        UIAlertController
+        alertControllerWithTitle:@"Connected"
+        message:@"Catapush Connected!"
+        preferredStyle:UIAlertControllerStyleAlert
+    ];
+    UIAlertAction* okButton = [
+        UIAlertAction
+        actionWithTitle:@"Ok"
+        style:UIAlertActionStyleDefault
+        handler:^(UIAlertAction * action) { }
+    ];
+    [alert addAction:okButton];
+    [UIApplication.sharedApplication.keyWindow.rootViewController presentViewController:alert animated:false completion:nil];
 }
 
 - (void)catapush:(Catapush *)catapush didFailOperation:(NSString *)operationName withError:(NSError *)error {
@@ -244,12 +254,20 @@
     
     NSString *errorMsg = [NSString stringWithFormat:@"The operation %@ is failed with error:\n%@", operationName, [error localizedDescription]];
     
-    UIAlertView *flowErrorAlertView = [[UIAlertView alloc] initWithTitle:@"Error"
-                                                                 message:errorMsg
-                                                                delegate:self
-                                                       cancelButtonTitle:@"Ok"
-                                                       otherButtonTitles:nil];
-    [flowErrorAlertView show];
+    UIAlertController * alert = [
+        UIAlertController
+        alertControllerWithTitle:@"Error"
+        message:errorMsg
+        preferredStyle:UIAlertControllerStyleAlert
+    ];
+    UIAlertAction* okButton = [
+        UIAlertAction
+        actionWithTitle:@"Ok"
+        style:UIAlertActionStyleDefault
+        handler:^(UIAlertAction * action) { }
+    ];
+    [alert addAction:okButton];
+    [UIApplication.sharedApplication.keyWindow.rootViewController presentViewController:alert animated:false completion:nil];
 }
 
 - (void)retry:(int)delayInSeconds{
